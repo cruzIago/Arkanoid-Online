@@ -6,7 +6,7 @@ Practica de Juegos en Red
 
 Nombre: Alexander Matos Teodoro<br>
 Correo: a.matost@alumnos.urjc.es<br>
-Github:Swordland<br>
+Github: Swordland<br>
 
 Nombre: Laura Rodríguez Corpas<br>
 Correo: l.rodriguezcor@alumnos.urjc.es<br>
