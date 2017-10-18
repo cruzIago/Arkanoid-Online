@@ -11,7 +11,8 @@ function preload(){
 //Funcion de creacion de las variables a usar, grupos etc
 function create(){
 
-exBlock = game.add.sprite(32, game.world.height - 150, 'dude');
+exBlock = game.add.sprite(32, game.world.height - 150, 'bloques');
+game.add.sprite(0, 0, 'Ball');
 }
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
