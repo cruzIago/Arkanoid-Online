@@ -1,8 +1,10 @@
 var game= new Phaser.Game(800,600,Phaser.AUTO,'',{preload:preload,create:create,update:update});
-var bloques; //Grupo de bloques para dibujar
-var bolas;   //Grupo para las bolas
-var bola_1;  //Bola del Jugador 1
-var bola_2;  //Bola del Jugador 2
+var bloques;    //Grupo de bloques para dibujar
+var bolas;      //Grupo para las bolas
+var bola_1;     //Bola del Jugador 1
+var bola_2;     //Bola del Jugador 2
+var barra_2;      //Barra del Jugador 1
+var barra_2;    //Barra del Jugador 2
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
