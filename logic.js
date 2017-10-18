@@ -3,6 +3,8 @@ var bloques; //Grupo de bloques para dibujar
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
+    game.load.image('Bloques', 'assets/Bloques.png');
+    game.load.image('Ball', 'assets/Ball.png');
 }
 
 //Funcion de creacion de las variables a usar, grupos etc
