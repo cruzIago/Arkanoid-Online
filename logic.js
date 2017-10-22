@@ -3,8 +3,9 @@ var bloques;    //Grupo de bloques para dibujar
 var bolas;      //Grupo para las bolas
 var bola_1;     //Bola del Jugador 1
 var bola_2;     //Bola del Jugador 2
-var barra_2;    //Barra del Jugador 1
+var barra_1;    //Barra del Jugador 1
 var barra_2;    //Barra del Jugador 2
+var controles; //Controles para mover la barra del jugador
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
@@ -15,7 +16,8 @@ function preload(){
 //Funcion de creacion de las variables a usar, grupos etc
 function create(){
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    
+    controles=game.input.keyboard.createCursorKeys();
+
     //bloques
     bloques = game.add.sprite(32, game.world.height - 150, 'Bloques');
     bloques.scale.setTo(2, 2);
@@ -36,6 +38,15 @@ function create(){
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
 function update(){
-
+    //bloques.x=game.input.x;
+    /*
+    bola_1.body.velocity.x=0;
+    
+    if(controles.left.isDown){
+        bola_1.body.velocity.x=-100;
+    }
+    else if(controles.right.isDown){
+        bola_1.body.velocity.x=100;
+    }*/
 
 }
