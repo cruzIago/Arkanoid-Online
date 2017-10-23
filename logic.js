@@ -80,3 +80,20 @@ function update(){
         bolas.body.velocity.y = -velocity.y;
     }
 }
+
+
+function lanzarBola () {
+
+    if (bInit)
+    {
+        bInit = false;
+        
+        bola_1.body.velocity.x = -90;
+        bola_1.body.velocity.y = -250;
+
+        bola_2.body.velocity.x = 90;
+        bola_2.body.velocity.y = -250;
+        
+    }
+
+}
