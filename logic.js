@@ -6,6 +6,7 @@ var bola_2;     //Bola del Jugador 2
 var barra_1;    //Barra del Jugador 1
 var barra_2;    //Barra del Jugador 2
 var controles; //Controles para mover la barra del jugador
+var bInit = true;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
