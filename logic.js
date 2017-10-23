@@ -12,7 +12,10 @@ var bInit;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
-    game.load.image('Bola', 'assets/Bola.png');
+    game.load.image('Bola1', 'assets/Bola.png');
+    game.load.image('Bola2', 'assets/Bola.png');
+    game.load.image('Pala1', 'assets/Pala3.png');
+    game.load.image('Pala2', 'assets/Pala3.png');
     game.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
 }
 
@@ -35,9 +38,9 @@ function create(){
     bolas.enableBody = true;
    
     //Creamos las palas de los 2 jugadores
-    pala_1 = palas.create(0, game.world.height - 64, 'Pala3');
+    pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
     pala_1.body.immovable = true;
-    pala_2 = palas.create(0, game.world.height - 64, 'Pala3');
+    pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
     pala_2.body.immovable = true;
     
      //Creamos las bolas de los 2 jugadores
@@ -74,13 +77,12 @@ function update(){
         pala_2.body.velocity.x=100;
     }
     
-    */
+    
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
-    }
+    }*/
 }
-
 
 function lanzarBola () {
 
