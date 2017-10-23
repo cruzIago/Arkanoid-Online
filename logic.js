@@ -8,6 +8,7 @@ var pala2_2;    //Barra del Jugador 2
 var controles;  //Controles para mover la barra del jugador
 var colisionBolasPalas;
 var colisionBolasBloques;
+var bInit;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
@@ -35,19 +36,19 @@ function create(){
     //Grupo "bolas"
     bolas = game.add.group();
     bolas.enableBody = true;
-    
-    //Creamos las bolas de los 2 jugadores
-    bola_1 = bolas.create(0, game.world.height - 64, 'Bola1');
-    bola_1.scale.setTo(0.06, 0.06);
-    bola_2 = bolas.create(50, game.world.height - 64, 'Bola2');
-    bola_2.scale.setTo(0.06, 0.06);
-
+   
     //Creamos las palas de los 2 jugadores
     pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
     pala_1.body.immovable = true;
     pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
     pala_2.body.immovable = true;
     
+     //Creamos las bolas de los 2 jugadores
+    bola_1 = bolas.create(pala_1.x, pala_1.y-15, 'Bola');
+    bola_1.scale.setTo(0.06, 0.06);
+    bola_2 = bolas.create(pala_2.x, pala_2.y-15, 'Bola');
+    bola_2.scale.setTo(0.06, 0.06);
+
     //Colisión entre la barra y el grupo bolas
     colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
 
