@@ -40,13 +40,25 @@ function create(){
 function update(){
     //bloques.x=game.input.x;
     /*
-    bola_1.body.velocity.x=0;
+        //Movimiento Jugador 1
+    barra_1.body.velocity.x=0;
     
     if(controles.left.isDown){
-        bola_1.body.velocity.x=-100;
+        barra_1.body.velocity.x=-100;
     }
     else if(controles.right.isDown){
-        bola_1.body.velocity.x=100;
-    }*/
+        barra_1.body.velocity.x=100;
+    }
+        //Movimiento Jugador 2
+    barra_2.body.velocity.x=0;
+    
+    if(controles.a.isDown){
+        barra_2.body.velocity.x=-100;
+    }
+    else if(controles.d.isDown){
+        barra_2.body.velocity.x=100;
+    }
+    
+    */
 
 }
