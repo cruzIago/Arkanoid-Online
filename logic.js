@@ -3,9 +3,11 @@ var bloques;    //Grupo de bloques para dibujar
 var bolas;      //Grupo para las bolas
 var bola_1;     //Bola del Jugador 1
 var bola_2;     //Bola del Jugador 2
-var barra_1;    //Barra del Jugador 1
-var barra_2;    //Barra del Jugador 2
-var controles; //Controles para mover la barra del jugador
+var pala_1;     //Barra del Jugador 1
+var pala2_2;    //Barra del Jugador 2
+var controles;  //Controles para mover la barra del jugador
+var colisionBolasPalas;
+var colisionBolasBloques;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
@@ -18,12 +20,16 @@ function create(){
     game.physics.startSystem(Phaser.Physics.ARCADE);
     controles=game.input.keyboard.createCursorKeys();
 
-    //bloques
+    //Grupo "bloques"
     bloques = game.add.sprite(32, game.world.height - 150, 'Bloques');
     bloques.scale.setTo(2, 2);
     bloques.frame= 0;
 
-    //Creamos el grupo "balls" y activamos su física
+    //Grupo "palas"
+    palas = game.add.group();
+    palas.enableBody = true;
+
+    //Grupo "bolas"
     bolas = game.add.group();
     bolas.enableBody = true;
     
@@ -32,7 +38,15 @@ function create(){
     bola_1.scale.setTo(0.06, 0.06);
     bola_2 = bolas.create(50, game.world.height - 64, 'Bola');
     bola_2.scale.setTo(0.06, 0.06);
- 
+
+    //Creamos las palas de los 2 jugadores
+    pala_1 = palas.create(0, game.world.height - 64, 'Pala3');
+    pala_1.body.immovable = true;
+    pala_2 = palas.create(0, game.world.height - 64, 'Pala3');
+    pala_2.body.immovable = true;
+    
+    //Colisión entre la barra y el grupo bolas
+    colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
 
 }
 
@@ -41,24 +55,27 @@ function update(){
     //bloques.x=game.input.x;
     /*
         //Movimiento Jugador 1
-    barra_1.body.velocity.x=0;
+    pala_1.body.velocity.x=0;
     
     if(controles.left.isDown){
-        barra_1.body.velocity.x=-100;
+        pala_1.body.velocity.x=-100;
     }
     else if(controles.right.isDown){
-        barra_1.body.velocity.x=100;
+        pala_1.body.velocity.x=100;
     }
         //Movimiento Jugador 2
-    barra_2.body.velocity.x=0;
+    pala_2.body.velocity.x=0;
     
     if(controles.a.isDown){
-        barra_2.body.velocity.x=-100;
+        pala_2.body.velocity.x=-100;
     }
     else if(controles.d.isDown){
-        barra_2.body.velocity.x=100;
+        pala_2.body.velocity.x=100;
     }
     
     */
-
+    if (colisionBolasPalas)
+    {
+        bolas.body.velocity.y = -velocity.y;
+    }
 }
