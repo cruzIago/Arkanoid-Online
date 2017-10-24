@@ -4,13 +4,19 @@ var bloque;     //Cada bloque que se dibuja
 var bolas;      //Grupo para las bolas
 var bola_1;     //Bola del Jugador 1
 var bola_2;     //Bola del Jugador 2
-var barra_1;    //Barra del Jugador 1
-var barra_2;    //Barra del Jugador 2
-var controles; //Controles para mover la barra del jugador
+var pala_1;     //Barra del Jugador 1
+var pala2_2;    //Barra del Jugador 2
+var controles;  //Controles para mover la barra del jugador
+var colisionBolasPalas;
+var colisionBolasBloques;
+var bInit;
 
 //Funcion de precarga de los sprites y objetos
-function preload() {
-    game.load.image('Bola', 'assets/Bola.png');
+function preload(){
+    game.load.image('Bola1', 'assets/Bola.png');
+    game.load.image('Bola2', 'assets/Bola.png');
+    game.load.image('Pala1', 'assets/Pala3.png');
+    game.load.image('Pala2', 'assets/Pala3.png');
     game.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
 }
 
@@ -39,6 +45,28 @@ function create() {
     bola_2 = bolas.create(50, game.world.height - 64, 'Bola');
     bola_2.scale.setTo(0.06, 0.06);
 
+    //Grupo "palas"
+    palas = game.add.group();
+    palas.enableBody = true;
+
+    //Grupo "bolas"
+    bolas = game.add.group();
+    bolas.enableBody = true;
+   
+    //Creamos las palas de los 2 jugadores
+    pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
+    pala_1.body.immovable = true;
+    pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
+    pala_2.body.immovable = true;
+    
+     //Creamos las bolas de los 2 jugadores
+    bola_1 = bolas.create(pala_1.x, pala_1.y-15, 'Bola');
+    bola_1.scale.setTo(0.06, 0.06);
+    bola_2 = bolas.create(pala_2.x, pala_2.y-15, 'Bola');
+    bola_2.scale.setTo(0.06, 0.06);
+
+    //Colisión entre la barra y el grupo bolas
+    colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
 
 }
 
@@ -47,24 +75,43 @@ function update(){
     //bloques.x=game.input.x;
     /*
         //Movimiento Jugador 1
-    barra_1.body.velocity.x=0;
+    pala_1.body.velocity.x=0;
     
     if(controles.left.isDown){
-        barra_1.body.velocity.x=-100;
+        pala_1.body.velocity.x=-100;
     }
     else if(controles.right.isDown){
-        barra_1.body.velocity.x=100;
+        pala_1.body.velocity.x=100;
     }
         //Movimiento Jugador 2
-    barra_2.body.velocity.x=0;
+    pala_2.body.velocity.x=0;
     
     if(controles.a.isDown){
-        barra_2.body.velocity.x=-100;
+        pala_2.body.velocity.x=-100;
     }
     else if(controles.d.isDown){
-        barra_2.body.velocity.x=100;
+        pala_2.body.velocity.x=100;
     }
     
-    */
+    
+    if (colisionBolasPalas)
+    {
+        bolas.body.velocity.y = -velocity.y;
+    }*/
+}
+
+function lanzarBola () {
+
+    if (bInit)
+    {
+        bInit = false;
+        
+        bola_1.body.velocity.x = -90;
+        bola_1.body.velocity.y = -250;
+
+        bola_2.body.velocity.x = 90;
+        bola_2.body.velocity.y = -250;
+        
+    }
 
 }
