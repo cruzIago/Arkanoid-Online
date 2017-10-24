@@ -31,7 +31,9 @@ function create(){
 
     //Grupo "palas"
     palas = game.add.group();
+    palas.scale.setTo(2, 2);
     palas.enableBody = true;
+    
 
     //Grupo "bolas"
     bolas = game.add.group();
@@ -43,10 +45,11 @@ function create(){
     pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
     pala_2.body.immovable = true;
     
+    
      //Creamos las bolas de los 2 jugadores
-    bola_1 = bolas.create(pala_1.x, pala_1.y-15, 'Bola');
+    bola_1 = bolas.create(pala_1.x, pala_1.y-30, 'Bola1');
     bola_1.scale.setTo(0.06, 0.06);
-    bola_2 = bolas.create(pala_2.x, pala_2.y-15, 'Bola');
+    bola_2 = bolas.create(pala_2.x, pala_2.y-15, 'Bola2');
     bola_2.scale.setTo(0.06, 0.06);
 
     //Colisión entre la barra y el grupo bolas
