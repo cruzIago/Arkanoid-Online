@@ -1,5 +1,6 @@
-var game= new Phaser.Game(800,600,Phaser.AUTO,'',{preload:preload,create:create,update:update});
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var bloques;    //Grupo de bloques para dibujar
+var bloque;     //Cada bloque que se dibuja
 var bolas;      //Grupo para las bolas
 var bola_1;     //Bola del Jugador 1
 var bola_2;     //Bola del Jugador 2
@@ -20,14 +21,29 @@ function preload(){
 }
 
 //Funcion de creacion de las variables a usar, grupos etc
-function create(){
+function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    controles=game.input.keyboard.createCursorKeys();
+    controles = game.input.keyboard.createCursorKeys();
 
-    //Grupo "bloques"
-    bloques = game.add.sprite(32, game.world.height - 150, 'Bloques');
-    bloques.scale.setTo(2, 2);
-    bloques.frame= 0;
+    //bloques
+    bloques=game.add.group();
+    bloques.scale.setTo(1.8,1.8);
+    bloques.createMultiple(12,'Bloques',[0,14,28,42],true);
+    bloques.align(12,-1,35,14);   
+    //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
+    bloques.x=16;
+    bloques.y=24;
+    //Creamos el grupo "balls" y activamos su física
+    bolas = game.add.group();
+    bolas.enableBody = true;
+
+
+    //Creamos las bolas de los 2 jugadores
+    bola_1 = bolas.create(game.world.width - 256, 26, 'Bola');
+    bola_1.scale.setTo(0.06, 0.06);
+    bola_1.body.gravity.y = 100;
+    bola_2 = bolas.create(50, game.world.height - 64, 'Bola');
+    bola_2.scale.setTo(0.06, 0.06);
 
     //Grupo "palas"
     palas = game.add.group();
@@ -84,6 +100,21 @@ function update(){
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
+    }*/
+}
+
+function lanzarBola () {
+
+    if (bInit)
+    {
+        bInit = false;
+        
+        bola_1.body.velocity.x = -90;
+        bola_1.body.velocity.y = -250;
+
+        bola_2.body.velocity.x = 90;
+        bola_2.body.velocity.y = -250;
+        
     }
-    */
+
 }
