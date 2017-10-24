@@ -21,17 +21,12 @@ function create() {
 
     //bloques
     bloques=game.add.group();
-    var i;
-    var j;
-    for ( i = 0; i < 3; i++) {
-        for ( j = 0; j < 10; j++) {
-            bloque=bloques.create(i+16,j+16,'Bloques');
-            bloques.scale.setTo(2, 2);
-            bloques.frame = 0;
-        }
-    }
-
-
+    bloques.scale.setTo(1.8,1.8);
+    bloques.createMultiple(12,'Bloques',[0,14,28,42],true);
+    bloques.align(12,-1,35,14);   
+    //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
+    bloques.x=16;
+    bloques.y=24;
     //Creamos el grupo "balls" y activamos su física
     bolas = game.add.group();
     bolas.enableBody = true;
@@ -48,15 +43,28 @@ function create() {
 }
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
-function update() {
-
-    bola_1.body.velocity.x = 0;
-
-    if (controles.left.isDown) {
-        bola_1.body.velocity.x = -100;
+function update(){
+    //bloques.x=game.input.x;
+    /*
+        //Movimiento Jugador 1
+    barra_1.body.velocity.x=0;
+    
+    if(controles.left.isDown){
+        barra_1.body.velocity.x=-100;
     }
-    else if (controles.right.isDown) {
-        bola_1.body.velocity.x = 100;
+    else if(controles.right.isDown){
+        barra_1.body.velocity.x=100;
     }
+        //Movimiento Jugador 2
+    barra_2.body.velocity.x=0;
+    
+    if(controles.a.isDown){
+        barra_2.body.velocity.x=-100;
+    }
+    else if(controles.d.isDown){
+        barra_2.body.velocity.x=100;
+    }
+    
+    */
 
 }
