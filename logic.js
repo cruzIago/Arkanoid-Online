@@ -54,6 +54,8 @@ function create() {
     //Grupo "bolas"
     bolas = game.add.group();
     bolas.enableBody = true;
+    bolas.body.collideWorldBounds = true;
+    bolas.body.bounce.set(1);
    
     //Creamos las palas de los 2 jugadores
     pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
