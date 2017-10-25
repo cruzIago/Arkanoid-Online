@@ -74,9 +74,7 @@ function update(){
         bola_2.body.x=pala_2.x;
 
     }
-    
-    
-    
+
         //Movimiento Jugador 1
     pala_1.body.velocity.x=0;
     
@@ -98,6 +96,8 @@ function update(){
     }
     else if(game.input.keyboard.isDown(Phaser.Keyboard.D)){
         pala_2.body.velocity.x=100;
+    }else if(game.input.keyboard.isDown(Phaser.Keyboard.W)){
+        lanzarBola();
     }
     
     /*
