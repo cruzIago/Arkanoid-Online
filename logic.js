@@ -14,8 +14,8 @@ var bInit;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
-    game.load.image('Bola1', 'assets/Bola.png');
-    game.load.image('Bola2', 'assets/Bola.png');
+    game.load.image('Bola1', 'assets/BolaAzul.png');
+    game.load.image('Bola2', 'assets/BolaRoja.png');
     game.load.image('Pala1', 'assets/Pala3.png');
     game.load.image('Pala2', 'assets/Pala3.png');
     game.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
@@ -47,7 +47,7 @@ function create() {
     bola_1.scale.setTo(0.06, 0.06);
     bola_1.body.gravity.y = 100;
 
-    bola_2 = bolas.create(50, game.world.height - 64, 'Bola2');
+    bola_2 = bolas.create(200, 26, 'Bola2');
     bola_2.scale.setTo(0.06, 0.06);
 
     //Grupo "palas"
