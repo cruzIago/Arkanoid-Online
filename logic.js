@@ -68,9 +68,8 @@ function update(){
     
     //Colisión entre la barra y el grupo bolas
     colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
-    //colisionBolasPalas = game.physics.arcade.collide(bola_2, palas);
     //bloques.x=game.input.x;
-    /*
+    
         //Movimiento Jugador 1
     pala_1.body.velocity.x=0;
     
@@ -80,7 +79,7 @@ function update(){
     else if(controles.right.isDown){
         pala_1.body.velocity.x=100;
     }
-        //Movimiento Jugador 2
+    /*    //Movimiento Jugador 2
     pala_2.body.velocity.x=0;
     
     if(controles.a.isDown){
@@ -88,13 +87,13 @@ function update(){
     }
     else if(controles.d.isDown){
         pala_2.body.velocity.x=100;
-    }
+    } */
     
     
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
-    }*/
+    }
 }
 
 function lanzarBola () {
