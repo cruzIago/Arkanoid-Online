@@ -10,12 +10,12 @@ var pala_2;    //Barra del Jugador 2
 var controles;  //Controles para mover la barra del jugador
 var colisionBolasPalas;
 var colisionBolasBloques;
-var bInit;
+var bInit= true;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
-    game.load.image('Bola1', 'assets/Bola.png');
-    game.load.image('Bola2', 'assets/Bola.png');
+    game.load.image('Bola1', 'assets/BolaAzul.png');
+    game.load.image('Bola2', 'assets/BolaRoja.png');
     game.load.image('Pala1', 'assets/Pala3.png');
     game.load.image('Pala2', 'assets/Pala3.png');
     game.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
@@ -25,6 +25,7 @@ function preload(){
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     controles = game.input.keyboard.createCursorKeys();
+
 
     //bloques
     bloques=game.add.group();
@@ -40,7 +41,6 @@ function create() {
     bolas = game.add.group();
     game.physics.arcade.enable(bolas);
     bolas.enableBody = true;
-    bolas.body.bounce.set(0.3);
 
     //Creamos las bolas de los 2 jugadores
     bola_1 = bolas.create(50, 26, 'Bola1');
@@ -68,9 +68,15 @@ function update(){
     
     //Colisión entre la barra y el grupo bolas
     colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
-    //colisionBolasPalas = game.physics.arcade.collide(bola_2, palas);
-    //bloques.x=game.input.x;
-    /*
+
+    if(bInit){
+        bola_1.body.x=pala_1.x;
+        bola_2.body.x=pala_2.x;
+
+    }
+    
+    
+    
         //Movimiento Jugador 1
     pala_1.body.velocity.x=0;
     
@@ -79,18 +85,22 @@ function update(){
     }
     else if(controles.right.isDown){
         pala_1.body.velocity.x=100;
+
+    }else if(controles.up.isDown){
+        lanzarBola();
     }
         //Movimiento Jugador 2
     pala_2.body.velocity.x=0;
+
     
-    if(controles.a.isDown){
+    if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
         pala_2.body.velocity.x=-100;
     }
-    else if(controles.d.isDown){
+    else if(game.input.keyboard.isDown(Phaser.Keyboard.D)){
         pala_2.body.velocity.x=100;
     }
     
-    
+    /*
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
