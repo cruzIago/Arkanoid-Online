@@ -10,7 +10,7 @@ var pala_2;    //Barra del Jugador 2
 var controles;  //Controles para mover la barra del jugador
 var colisionBolasPalas;
 var colisionBolasBloques;
-var bInit;
+var bInit=true;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
@@ -24,7 +24,6 @@ function preload(){
 //Funcion de creacion de las variables a usar, grupos etc
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    controles = game.input.keyboard.createCursorKeys();
 
     //bloques
     bloques=game.add.group();
@@ -34,21 +33,21 @@ function create() {
     //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
     bloques.x=16;
     bloques.y=24;
-    
 
-    //Creamos el grupo "balls" y activamos su física
+     //Grupo "bolas"
     bolas = game.add.group();
-    game.physics.arcade.enable(bolas);
     bolas.enableBody = true;
+    //bolas.body.bounce.set(1);
         
-
     //Creamos las bolas de los 2 jugadores
     bola_1 = bolas.create(50, 26, 'Bola1');
     bola_1.scale.setTo(0.06, 0.06);
     bola_1.body.gravity.y = 100;
+    player.body.collideWorldBounds = true; 
 
     bola_2 = bolas.create(200, 26, 'Bola2');
     bola_2.scale.setTo(0.06, 0.06);
+    player.body.collideWorldBounds = true; 
 
     //Grupo "palas"
     palas = game.add.group();
@@ -57,17 +56,31 @@ function create() {
     //Creamos las palas de los 2 jugadores
     pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
     pala_1.body.immovable = true;
+    player.body.collideWorldBounds = true; 
     pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
     pala_2.body.immovable = true;
+    player.body.collideWorldBounds = true; 
 
 
 }
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
 function update(){
+    controles = game.input.keyboard.createCursorKeys();
+    //LOGICA PALA
+    
+    //LOGICA BOLA
+    
+    //Al principio la bola sigue a la barra
+    /*if (bInit)
+    {
+        bola_1.body.x = pala_1.x;
+        bola_2.body.x = pala_2.x;
+    } */
     
     //Colisión entre la barra y el grupo bolas
-    colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
+     colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
+
     //bloques.x=game.input.x;
     
         //Movimiento Jugador 1
@@ -79,6 +92,8 @@ function update(){
     else if(controles.right.isDown){
         pala_1.body.velocity.x=100;
     }
+
+    
     /*    //Movimiento Jugador 2
     pala_2.body.velocity.x=0;
     
@@ -87,13 +102,13 @@ function update(){
     }
     else if(controles.d.isDown){
         pala_2.body.velocity.x=100;
-    } */
+    } 
     
     
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
-    }
+    }*/
 }
 
 function lanzarBola () {
