@@ -19,6 +19,7 @@ function preload(){
     game.load.image('Pala1', 'assets/Pala3.png');
     game.load.image('Pala2', 'assets/Pala3.png');
     game.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
+    game.load.spritesheet('PowerUps', 'assets/powerups.png', 22, 11);
 }
 
 //Funcion de creacion de las variables a usar, grupos etc
@@ -35,6 +36,10 @@ function create() {
     //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
     bloques.x=16;
     bloques.y=24;
+
+    //PowerUps
+    powerups=game.add.group();
+   powerups.scale.setTo(1.8,1.8);
     
 
     //Creamos el grupo "balls" y activamos su física
