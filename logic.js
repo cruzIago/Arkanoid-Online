@@ -10,7 +10,7 @@ var pala_2;    //Barra del Jugador 2
 var controles;  //Controles para mover la barra del jugador
 var colisionBolasPalas;
 var colisionBolasBloques;
-var bInit;
+var bInit=true;
 
 //Funcion de precarga de los sprites y objetos
 function preload(){
