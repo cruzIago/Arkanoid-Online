@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 800, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var bloques;    //Grupo de bloques para dibujar
 var bloque;     //Cada bloque que se dibuja
 var bolas;      //Grupo para las bolas
@@ -32,7 +32,7 @@ function create() {
     bloques.createMultiple(12,'Bloques',[0,14,28,42],true);
     bloques.align(12,-1,35,14);   
     //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
-    bloques.x=16;
+    bloques.x=24;
     bloques.y=24;
 
     //Creamos el grupo "balls" y activamos su física
@@ -55,12 +55,14 @@ function create() {
     palas.enableBody = true;
 
     //Creamos las palas de los 2 jugadores
-    pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
+    pala_1 = palas.create(0, game.world.height - 32, 'Pala1');
     pala_1.body.immovable = true;
+    pala_1.scale.setTo(0.3, 0.3);
     
     //pala_1.body.collideWorldBounds = true; 
-    pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
+    pala_2 = palas.create(100, game.world.height - 200, 'Pala2');
     pala_2.body.immovable = true;
+    pala_2.scale.setTo(0.3, 0.3);
     //pala_2.body.collideWorldBounds = true; 
 
 
@@ -98,7 +100,7 @@ function update(){
     }
 
     
-    /*    //Movimiento Jugador 2
+    //Movimiento Jugador 2
     pala_2.body.velocity.x=0;
 
     
@@ -113,7 +115,7 @@ function update(){
     if (colisionBolasPalas)
     {
         bolas.body.velocity.y = -velocity.y;
-    }*/
+    }  */
 }
 
 function lanzarBola () {
