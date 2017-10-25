@@ -40,7 +40,7 @@ function create() {
     bolas = game.add.group();
     game.physics.arcade.enable(bolas);
     bolas.enableBody = true;
-        
+    //bolas.body.bounce.set(0.3);
 
     //Creamos las bolas de los 2 jugadores
     bola_1 = bolas.create(50, 26, 'Bola1');
