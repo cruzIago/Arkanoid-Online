@@ -4,8 +4,9 @@ var bloque;     //Cada bloque que se dibuja
 var bolas;      //Grupo para las bolas
 var bola_1;     //Bola del Jugador 1
 var bola_2;     //Bola del Jugador 2
+var palas;      //Grupo para las palas
 var pala_1;     //Barra del Jugador 1
-var pala2_2;    //Barra del Jugador 2
+var pala_2;    //Barra del Jugador 2
 var controles;  //Controles para mover la barra del jugador
 var colisionBolasPalas;
 var colisionBolasBloques;
@@ -33,48 +34,41 @@ function create() {
     //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
     bloques.x=16;
     bloques.y=24;
+    
+
     //Creamos el grupo "balls" y activamos su física
     bolas = game.add.group();
+    game.physics.arcade.enable(bolas);
     bolas.enableBody = true;
-
+        
 
     //Creamos las bolas de los 2 jugadores
-    bola_1 = bolas.create(game.world.width - 256, 26, 'Bola');
+    bola_1 = bolas.create(50, 26, 'Bola1');
     bola_1.scale.setTo(0.06, 0.06);
     bola_1.body.gravity.y = 100;
-    bola_2 = bolas.create(50, game.world.height - 64, 'Bola');
+
+    bola_2 = bolas.create(50, game.world.height - 64, 'Bola2');
     bola_2.scale.setTo(0.06, 0.06);
 
     //Grupo "palas"
     palas = game.add.group();
-    palas.scale.setTo(2, 2);
     palas.enableBody = true;
-    
 
-    //Grupo "bolas"
-    bolas = game.add.group();
-    bolas.enableBody = true;
-   
     //Creamos las palas de los 2 jugadores
     pala_1 = palas.create(0, game.world.height - 64, 'Pala1');
     pala_1.body.immovable = true;
     pala_2 = palas.create(100, game.world.height - 64, 'Pala2');
     pala_2.body.immovable = true;
-    
-    
-     //Creamos las bolas de los 2 jugadores
-    bola_1 = bolas.create(pala_1.x, pala_1.y-30, 'Bola1');
-    bola_1.scale.setTo(0.06, 0.06);
-    bola_2 = bolas.create(pala_2.x, pala_2.y-15, 'Bola2');
-    bola_2.scale.setTo(0.06, 0.06);
 
-    //Colisión entre la barra y el grupo bolas
-    colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
 
 }
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
 function update(){
+    
+    //Colisión entre la barra y el grupo bolas
+    colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
+    //colisionBolasPalas = game.physics.arcade.collide(bola_2, palas);
     //bloques.x=game.input.x;
     /*
         //Movimiento Jugador 1
