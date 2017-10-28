@@ -28,7 +28,7 @@ function create() {
 
     //bloques
     bloques=game.add.group();
-    bloques.scale.setTo(1.8,1.8);
+    bloques.scale.setTo(1.8,1.);
     bloques.createMultiple(12,'Bloques',[0,14,28,42],true);
     bloques.align(12,-1,35,14);   
     //Creamos el grid de bloques tal que align(sprites por fila,veces que repite (-1 los sprites que se declaren), separacion en x, separacion en y)
