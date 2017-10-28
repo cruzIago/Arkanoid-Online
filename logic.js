@@ -39,7 +39,7 @@ function create() {
 
     //PowerUps
     powerups=game.add.group();
-   powerups.scale.setTo(1.8,1.8);
+    powerups.scale.setTo(1.8,1.8);
     
 
     //Creamos el grupo "balls" y activamos su física
