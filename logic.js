@@ -127,3 +127,16 @@ function lanzarBola () {
     }
 
 }
+
+function goPU(x,y){
+    //Hay una probabilidad de 10% de que salga
+    var push = Math.floor((Math.random() * 10) + 1);
+    if (push<2){
+        powerup = powerups.create(x, y, 'PowerUps');
+        powerup.body.gravity.y = 70;
+        powerup.animations.add('girar',[0,1,2,3,4,5,6], 10, true);
+        //powerup.onOutOfBounds.add(powerup.kill(), this);
+
+    }
+
+}
