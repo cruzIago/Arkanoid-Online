@@ -16,6 +16,7 @@ var bInit= true;
 var powerups;
 var timer;
 var puntuacion = 0;
+var bolasperdidas = 0;
 
 
 //Funcion de precarga de los sprites y objetos
@@ -66,8 +67,6 @@ function create() {
     //Grupo "palas"
     palas = game.add.group();
     palas.enableBody = true;
-    palas.grande = 0;
-    palas.peqe = 0;
     //palas.scale.setTo(0.5,0.5);
     
     //Creamos las palas de los 2 jugadores
@@ -105,10 +104,12 @@ function create() {
 
     //Creamos un temporizador
     timer = game.time.create(false);
-}
 
-palas.p = 0;
-palas.g = 0;
+    //Evento para cuando la bola se pierda
+    bola_1.events.onOutOfBounds.add(matarj1, this);
+    bola_2.events.onOutOfBounds.add(matarj2, this);
+
+}
 
 
 //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
@@ -161,7 +162,8 @@ function bloqueRompe(bola,bloque){
     bloque.kill();
     goPU(bloque.x,bloque.y)
     puntuacion +=10;
-    if (puntuacion==400){
+    if (puntuacion==400){   //Si no quedan bloques se para el juego y has ganado
+        vel = 0;
         bola_1.body.velocity.x = 0;
         bola_1.body.velocity.y = 0;
 
@@ -177,7 +179,7 @@ function bloqueRompe(bola,bloque){
 function goPU(x,y){
     //Hay una probabilidad de 10% de que salga
     var push = Math.floor((Math.random() * 10) + 1);
-    if (push<4){
+    if (push<6){
         powerup = powerups.create(x, y, 'PowerUps');
         powerup.body.gravity.y = 70;
         var p = Math.floor((Math.random() * 4) + 1);
@@ -234,4 +236,24 @@ function lanzarBola () {
 }
 function contadorVel(){
     vel = 150;
+}
+function matarj1() {
+    pala_1.kill();
+    bolasperdidas+=1;
+    if (bolasperdidas==2){  //Cuando se han perdido las 2 bolas se acaba la partida
+        gameover();
+    }
+}
+function matarj2() {
+    pala_2.kill();
+    bolasperdidas+=1;
+    if (bolasperdidas==2){  //Cuando se han perdido las 2 bolas se acaba la partida
+        gameover();
+    }
+}
+
+
+function gameover(){
+    vel = 0;
+    //FALTA TEXTO DE HAS PERDIDO Y SALIR DE LA PARTIDA
 }
