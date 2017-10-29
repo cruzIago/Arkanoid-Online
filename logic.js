@@ -15,7 +15,6 @@ var colisionPUPalas;
 var bInit= true;
 var powerups;
 var timer;
-var textoPuntuacion;
 var puntuacion = 0;
 var bolasperdidas = 0;
 
