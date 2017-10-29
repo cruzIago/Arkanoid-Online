@@ -43,7 +43,7 @@ function create() {
     //Creamos las bolas de los 2 jugadores
     bola_1 = bolas.create(50, 26, 'Bola1');
     bola_1.scale.setTo(0.06, 0.06);
-    bola_1.body.gravity.y = 100;
+    //bola_1.body.gravity.y = 100;
     bola_1.body.collideWorldBounds = true; 
 
     bola_2 = bolas.create(50, game.world.height - 64, 'Bola2');
