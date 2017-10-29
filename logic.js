@@ -15,6 +15,7 @@ var colisionPUPalas;
 var bInit= true;
 var powerups;
 var timer;
+var textoPuntuacion;
 var puntuacion = 0;
 var bolasperdidas = 0;
 
@@ -112,6 +113,9 @@ function create() {
     bola_1.events.onOutOfBounds.add(matarj1, this);
     bola_2.events.onOutOfBounds.add(matarj2, this);
 
+
+    //Añadimos el resultado a mostrar, compartido por ambos jugadores
+    textoPuntuacion=game.add.text(16,16,"puntos: 0",{ font: "18px Calibri", fill: "#ffffff", align: "left" });
 }
 
 
@@ -162,7 +166,7 @@ function update(){
 }
 function palaRebote(bola,pala){
     var dif;
-    
+
     if(bola.x>pala.x){
         dif=bola.x-pala.x;
         bola.body.velocity.x=(6*dif);
@@ -178,6 +182,7 @@ function bloqueRompe(bola,bloque){
     goPU(bloque.x,bloque.y);
     
     puntuacion +=10;
+    textoPuntuacion.text='puntos: '+puntuacion;
     if (puntuacion==400){   //Si no quedan bloques se para el juego y has ganado
         vel = 0;
         bola_1.body.velocity.x = 0;

@@ -1,0 +1,12 @@
+#menu{
+background-image: url('assets/BACKGROUND.png');
+display:table;
+width: 800px;
+height: 600px;
+}
+#jugadores{
+display:table-cell;
+vertical-align: middle;
+text-align: center;
+}
+
