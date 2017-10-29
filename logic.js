@@ -67,17 +67,20 @@ function create() {
     //Grupo "palas"
     palas = game.add.group();
     palas.enableBody = true;
+    
     //palas.scale.setTo(0.5,0.5);
     
     //Creamos las palas de los 2 jugadores
     pala_1 = palas.create(game.world.centerX, game.world.height-128, 'Pala1');
     pala_1.anchor.setTo(0.5,0.5);
     pala_1.scale.setTo(0.3,0.3);
+    pala_1.body.collideWorldBounds=true;
     pala_1.body.immovable = true;
 
     pala_2 = palas.create(game.world.centerX, game.world.height - 16, 'Pala2');
     pala_2.anchor.setTo(0.5,0.5);
     pala_2.scale.setTo(0.3,0.3);
+    pala_2.body.collideWorldBounds=true;
     pala_2.body.immovable = true;
     
     //Creamos el grupo "balls" y activamos su física
@@ -138,7 +141,7 @@ function update(){
 
     }else{
         //Colisión entre la barra y el grupo bolas
-        colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
+        game.physics.arcade.collide(bolas, palas,palaRebote,null,this);
         game.physics.arcade.collide(bolas,bloques,bloqueRompe,null,this);
         colisionPUPalas = game.physics.arcade.collide(powerups,palas,activarPU,null,this);
         
@@ -157,10 +160,23 @@ function update(){
     
     
 }
+function palaRebote(bola,pala){
+    var dif;
+    
+    if(bola.x>pala.x){
+        dif=bola.x-pala.x;
+        bola.body.velocity.x=(6*dif);
+
+    }else if(bola.x<pala.x){
+        dif=pala.x-bola.x;
+        bola.body.velocity.x=(-6*dif);
+    }
+}
 
 function bloqueRompe(bola,bloque){
     bloque.kill();
-    goPU(bloque.x,bloque.y)
+    goPU(bloque.x,bloque.y);
+    
     puntuacion +=10;
     if (puntuacion==400){   //Si no quedan bloques se para el juego y has ganado
         vel = 0;
