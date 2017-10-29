@@ -41,14 +41,17 @@ function create() {
     bolas.enableBody = true;
         
     //Creamos las bolas de los 2 jugadores
-    bola_1 = bolas.create(50, 26, 'Bola1');
+    bola_1 = bolas.create(game.world.width -500, game.world.height - 235, 'Bola1');
     bola_1.scale.setTo(0.06, 0.06);
-    bola_1.body.gravity.y = 100;
+    bola_1.body.velocity.setTo(200,200);
     bola_1.body.collideWorldBounds = true; 
+    bola_1.body.bounce.set(1,1);
 
     bola_2 = bolas.create(50, game.world.height - 64, 'Bola2');
     bola_2.scale.setTo(0.06, 0.06);
+    bola_2.body.velocity.setTo(200,200);
     bola_2.body.collideWorldBounds = true; 
+    bola_2.body.bounce.set(1,1); //rebote en vectores x e y
 
     //Grupo "palas"
     palas = game.add.group();
@@ -83,7 +86,9 @@ function update(){
     
     //Colisión entre la barra y el grupo bolas
      colisionBolasPalas = game.physics.arcade.collide(bolas, palas);
-
+    if (colisionBolasPalas===true){
+        game.physics.arcade.velocityFromAngle(bola_1.angle, 300, bola_1.body.velocity);
+    }
     //bloques.x=game.input.x;
     
         //Movimiento Jugador 1
@@ -132,4 +137,9 @@ function lanzarBola () {
         
     }
 
+}
+
+//cuando una bola toque el bajo de la pantalla, se pasa por parámetro aquí y se elimina
+function eliminarBola(bola){
+    bola.kill();
 }
