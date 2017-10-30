@@ -62,3 +62,6 @@ Assets del juego
 ![background_img](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/background_ingame.png?raw=true)
 ![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/powerups.png?raw=true)
 ![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/volver.png?raw=true)
+![inicio](https://i.imgur.com/Qelf1OZ.png)
+![1solo](https://i.imgur.com/xLq8uIz.png)
+![2coop](https://i.imgur.com/64SZbij.png)
