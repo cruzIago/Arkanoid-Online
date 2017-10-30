@@ -34,7 +34,7 @@ Game.Nivel.prototype = {
     },
     create: function (game) {
         fondo = this.add.sprite(0, 100, 'fondo');
-        textoPuntuacion=game.add.text(16,16,"puntos: 0",{ font: "18px Calibri", fill: "#ffffff", align: "left" });
+        textoPuntuacion = game.add.text(16, 16, "puntos: 0", { font: "18px Calibri", fill: "#ffffff", align: "left" });
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.physics.arcade.checkCollision.down = false;
         controles = this.input.keyboard.createCursorKeys();
@@ -153,7 +153,12 @@ Game.Nivel.prototype = {
                 pala_2.body.velocity.x = vel;
             }
         }
-
+        if (vel == 0) { 
+            this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
+                this.state.start('Menu');
+            
+            },this); 
+        }
 
     },
 
@@ -192,7 +197,7 @@ function bloqueRompe(bola, bloque) {
     bloque.kill();
     goPU(bloque.x, bloque.y);
     puntuacion += 10;
-    textoPuntuacion.text='puntos: '+puntuacion;
+    textoPuntuacion.text = 'puntos: ' + puntuacion;
     if (puntuacion == 400) {   //Si no quedan bloques se para el juego y has ganado
         vel = 0;
         bola_1.body.velocity.x = 0;
@@ -251,18 +256,25 @@ function goPU(x, y) {
 
 function gameover() {
     vel = 0;
+
     //FALTA TEXTO DE HAS PERDIDO Y SALIR DE LA PARTIDA
 }
+
+
 
 function contadorVel() {
     vel = 150;
 }
 
 function matarj1() {
+
     pala_1.kill();
     bolasperdidas += 1;
-    if (bolasperdidas == 2) {  //Cuando se han perdido las 2 bolas se acaba la partida
+    if (nJugadores && bolasperdidas == 2) {  //Cuando se han perdido las 2 bolas se acaba la partida
         gameover();
+    } else if (!nJugadores && bolasperdidas == 1) {
+        gameover();
+
     }
 }
 
