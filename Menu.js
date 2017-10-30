@@ -9,7 +9,7 @@ var boton2;
 
 Game.Menu.prototype={
     create: function (game) {
-        pantallaTitulo = game.add.sprite(0,100,'pantallaTitulo');
+        pantallaTitulo = game.add.sprite(0,0,'pantallaTitulo');
         this.crearBoton1(game, game.world.centerX-170,390,300,100, 
          function(){
          });
@@ -23,23 +23,22 @@ Game.Menu.prototype={
     },
     
     crearBoton1: function(game, x, y, w, h, callback){
-        boton1=game.add.button(x+150,y,'boton1J');
+        boton1=game.add.button(x+70,y,'boton1J');
         boton1.onInputUp.add(arriba,this); 
         function arriba(){
             game.state.start('Nivel',true,false,false);
             }    
-        boton1.width=w/2;
-        boton1.height=h/2; 
+        boton1.scale.setTo(0.45,0.45);
+       // boton1.height=h/2; 
           
     },
     crearBoton2: function(game, x, y, w, h, callback){
-        boton2=game.add.button(x+150,y,'boton2J');
+        boton2=game.add.button(x+70,y-15,'boton2J');
         boton2.onInputUp.add(arriba,this); 
         function arriba(){
             game.state.start('Nivel',true,false,true);
             }    
-        boton2.width=w/2;
-        boton2.height=h/2;
+            boton2.scale.setTo(0.45,0.45);
     }
     
 }

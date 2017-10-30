@@ -30,10 +30,13 @@ var fondo;
 Game.Nivel.prototype = {
     init: function (jugadores) {
         nJugadores = jugadores;
-
+        bInit=true;
+        bolasperdidas=0;
+        puntuacion=0;
+        vel=150;
     },
     create: function (game) {
-        fondo = this.add.sprite(0, 100, 'fondo');
+        fondo = this.add.sprite(0, 0, 'fondo');
         textoPuntuacion = game.add.text(16, 16, "puntos: 0", { font: "18px Calibri", fill: "#ffffff", align: "left" });
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.physics.arcade.checkCollision.down = false;
@@ -88,6 +91,7 @@ Game.Nivel.prototype = {
             bola_2.anchor.setTo(0.5, 0.5);
             bola_2.scale.setTo(0.06, 0.06);
             bola_2.body.velocity.setTo(200, 200);
+            bola_2.checkWorldBounds = true;
             bola_2.body.collideWorldBounds = true;
             bola_2.body.bounce.set(1);
             bola_2.events.onOutOfBounds.add(matarj2, this);
@@ -280,6 +284,7 @@ function matarj1() {
 
 
 function matarj2() {
+    pala_2.kill();
     if (nJugadores) {
         pala_2.kill();
         bolasperdidas += 1;
