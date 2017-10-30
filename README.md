@@ -34,3 +34,31 @@ Github: cruzIago<br>
 
 - Gestiona el envio de datos entre jugadores como el chat
 - Entre esos datos contaremos tambien el envio de posiciones de pala, pelota y bloques que ha golpeado el otro usuario
+
+
+Parte 2- Juego
+
+Assets del juego
+
+![1Jugador](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/1JUGADOR.png?raw=true)
+
+![2Jugadores](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/2JUGADORES.png?raw=true)
+
+![Background](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BACKGROUND.png?raw=true)
+
+![Bloques](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Bloques.png?raw=true)
+
+![BolaAzul](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BolaAzul.png?raw=true)
+
+![BolaROja](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BolaRoja.png?raw=true)
+
+![MapaMulti](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Mapa%20multi.png?raw=true)
+![Pala0](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala0.png?raw=true)
+![Pala1](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala1.png?raw=true)
+![Pala2](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala2.png?raw=true)
+![Pala3](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala3.png?raw=true)
+![Pala4](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala4.png?raw=true)
+![Pala5](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala5.png?raw=true)
+![background_img](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/background_ingame.png?raw=true)
+![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/powerups.png?raw=true)
+![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/volver.png?raw=true)
