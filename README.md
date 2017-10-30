@@ -65,3 +65,4 @@ Assets del juego
 ![inicio](https://i.imgur.com/Qelf1OZ.png)
 ![1solo](https://i.imgur.com/xLq8uIz.png)
 ![2coop](https://i.imgur.com/64SZbij.png)
+![diagrama](https://imgur.com/a/6tYMr)
