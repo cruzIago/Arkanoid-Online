@@ -26,7 +26,7 @@ Game.Nivel = function (game) {
     this.crearBoton2 = null;
 };
 
-var fondo;
+var fondo;      //hay que meter la imagen en la carpeta assets
 Game.Nivel.prototype = {
     init: function (jugadores) {
         nJugadores = jugadores;
@@ -159,7 +159,7 @@ Game.Nivel.prototype = {
         }
         if (vel == 0) { 
             this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
-                this.state.start('Menu');
+                this.state.start('IntroducirNombre');       //lleva a la pantalla para introducir el nombre en el Leaderboard
             
             },this); 
         }
