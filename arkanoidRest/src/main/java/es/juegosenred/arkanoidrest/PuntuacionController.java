@@ -58,7 +58,7 @@ public class PuntuacionController {
         return puntos;
 
     }
-
+    //Metodo para crear la tabla la primera vez. INTENTAR CAMBIAR
     public void crearHash() {
         hashCrea = true;
         for (long i = 0; i < 8; i++) {
