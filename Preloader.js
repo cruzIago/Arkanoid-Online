@@ -10,6 +10,7 @@ Game.Preloader.prototype = {
         this.load.image('fondo', 'assets/background_ingame.png');
         this.load.image('boton1J', 'assets/1JUGADOR.png');
         this.load.image('boton2J', 'assets/2JUGADORES.png');
+        this.load.image('botonVolver', 'assets/volver.png');
         this.load.image('Bola1', 'assets/BolaAzul.png');
         this.load.image('Bola2', 'assets/BolaRoja.png');
         this.load.image('Pala1', 'assets/Pala3.png');
@@ -22,6 +23,9 @@ Game.Preloader.prototype = {
         this.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
         this.load.spritesheet('PowerUps', 'assets/powerups.png', 22, 15 );
         this.load.image('fondoNegro', 'assets/fondoNegro.png');
+        this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
+        this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
+        
     },
     
     create:function(){
