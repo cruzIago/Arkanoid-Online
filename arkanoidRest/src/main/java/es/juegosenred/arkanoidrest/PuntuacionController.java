@@ -31,7 +31,8 @@ public class PuntuacionController {
     //Controlador get para el servidor
     @GetMapping
     public Collection<Puntuacion> scores() {
-        puntss.put((long)2, new Puntuacion(2,2,"hey"));
+       // puntss.put((long)2, new Puntuacion(2,2,"hey"));
+       //crearHash();
         return puntss.values();
     }
 

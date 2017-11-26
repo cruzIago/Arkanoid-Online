@@ -159,7 +159,7 @@ Game.Nivel.prototype = {
         }
         if (vel == 0) { 
             this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
-                this.state.start('IntroducirNombre');       //lleva a la pantalla para introducir el nombre en el Leaderboard
+                this.state.start('IntroducirNombre',true,false,puntuacion);       //lleva a la pantalla para introducir el nombre en el Leaderboard
             
             },this); 
         }
