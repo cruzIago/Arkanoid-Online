@@ -7,6 +7,7 @@ public class Puntuacion {
     private String who;
 
     public Puntuacion() {
+        this.who="AKO";
     }
 
     public Puntuacion(int id, int score, String who) {

@@ -41,6 +41,7 @@ $(document).ready(function(){
     });
     var texto1=$('#puntuacion');
     var texto2=$('#nombre');
+    
     $("#agregar").click(function(){
         
         var value=texto1.val();
