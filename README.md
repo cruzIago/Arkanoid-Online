@@ -84,6 +84,7 @@ Assets del juego
 #Pantalla de rankings
 ![leaderboard](https://i.imgur.com/Vztc2hd.png)
 
+
 #Api Rest diagrama de clases
-![diagramaRest](https://i.imgur.com/TJuKD6P.png)
+![diagramaRest](https://i.imgur.com/AcNt0Ld.png)
 
