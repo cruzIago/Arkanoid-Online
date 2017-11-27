@@ -65,26 +65,26 @@ Assets del juego
 ![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/powerups.png?raw=true)
 ![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/volver.png?raw=true)
 
-#Menú de inicio, se puede escoger entre dos opciones: Jugar solo (1 Jugador) o jugar con alguien (2 Jugadores).
+# Menú de inicio, se puede escoger entre dos opciones: Jugar solo (1 Jugador) o jugar con alguien (2 Jugadores).
 
 ![inicio](https://i.imgur.com/Qelf1OZ.png)
 
-#Pantalla in-game del modo 1 jugador (1 Barra y 1 Bola)
+# Pantalla in-game del modo 1 jugador (1 Barra y 1 Bola)
 
 ![1solo](https://i.imgur.com/xLq8uIz.png)
 
-#Pantalla in-game del modo 2 jugadores (2 Barras y 2 Bolas)
+# Pantalla in-game del modo 2 jugadores (2 Barras y 2 Bolas)
 
 ![2coop](https://i.imgur.com/64SZbij.png)
 ![diagrama](https://i.imgur.com/oC5YEw8.png)
 
-#Pantalla de introducir nombre
+# Pantalla de introducir nombre
 ![introducir](https://i.imgur.com/rLjSVGN.png)
 
-#Pantalla de rankings
+# Pantalla de rankings
 ![leaderboard](https://i.imgur.com/Vztc2hd.png)
 
 
-#Api Rest diagrama de clases
+# Api Rest diagrama de clases
 ![diagramaRest](https://i.imgur.com/AcNt0Ld.png)
 
