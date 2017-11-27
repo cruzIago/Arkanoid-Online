@@ -25,6 +25,7 @@ Game.Preloader.prototype = {
         this.load.image('fondoNegro', 'assets/fondoNegro.jpg');
         this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
         this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
+        this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         
     },
     

@@ -32,18 +32,18 @@ Game.Leaderboard.prototype={
             //puntuaciones[0]=puntuacion[0].score+", "+puntuacion[0].who;}
             game.add.text(200,270+i*57
                 ,puntuacion[i].score+"---"+puntuacion[i].who,
-                {boundsAlignH:"center",boundsAlignV:"middle"});
+                {boundsAlignH:"center",boundsAlignV:"middle"}).addColor('#ffffff',0);
         }
     });
         
         //game.add.text(game.world.centerX,game.world.centerY,""+puntuaciones,{boundsAlignH:"center",boundsAlignV:"middle"});
-        this.crearBoton(game, game.world.centerX-170,390,300,100, 
+        this.crearBoton(game, 600,700,300,100, 
             function(){
             });
     }, 
 
     crearBoton: function(game, x, y, w, h, callback){
-        botonMenu=game.add.button(x+70,y-15,'botonVolver');
+        botonMenu=game.add.button(x,y,'botonVolver');
         botonMenu.onInputUp.add(arriba,this); 
 
         function arriba(){
