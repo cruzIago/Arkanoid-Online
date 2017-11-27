@@ -43,7 +43,7 @@ Game.Leaderboard.prototype={
     }, 
 
     crearBoton: function(game, x, y, w, h, callback){
-        botonMenu=game.add.button(x,y,'botonVolver');
+        botonMenu=game.add.button(x,y,'siguiente');
         botonMenu.onInputUp.add(arriba,this); 
 
         function arriba(){

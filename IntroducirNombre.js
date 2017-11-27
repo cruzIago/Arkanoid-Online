@@ -73,7 +73,7 @@ Game.IntroducirNombre.prototype = {
     },
     
     crearBoton: function (game, x, y, w, h, callback) {
-        botonNombre = game.add.button(x, y, 'botonVolver');
+        botonNombre = game.add.button(x, y, 'enter');
         botonNombre.onInputUp.add(arriba, this);
         function arriba() {
             textoEntero=texto[0].text+texto[1].text+texto[2].text;

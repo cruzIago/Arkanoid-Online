@@ -6,6 +6,8 @@ Game.Preloader.prototype = {
     //Funcion de precarga de los sprites y objetos
     preload:function(){
         this.titulo=this.add.sprite (this.world.centerX,this.world.CenterY, 'titulo');
+        this.load.image('siguiente','assets/siguiete.png');
+        this.load.image('enter','assets/ENTER.png');
         this.load.image('pantallaTitulo', 'assets/BACKGROUND.png');
         this.load.image('fondo', 'assets/background_ingame.png');
         this.load.image('boton1J', 'assets/1JUGADOR.png');
