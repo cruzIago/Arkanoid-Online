@@ -35,6 +35,8 @@ Github: cruzIago<br>
 - Gestiona el envio de datos entre jugadores como el chat
 - Entre esos datos contaremos tambien el envio de posiciones de pala, pelota y bloques que ha golpeado el otro usuario
 
+# Flujo
+Comenzamos ejecutando el .jar, Arkanoid-Online Rest.jar para tener nuestro servidor REST encendido. Accedemos a Index.html para comenzar la partida. Cuando destruyamos todos los bloques o perdamos las bolas, habrá que introducir el nombre, que será como máximo de 3 letras, pudiendo moverse de izquierda a derecha para introducirlas. Pulsar Enter para acceder a la tabla de puntuaciones y saber si hemos sido capaces de superar algún record. Con siguiente volveremos al menu inicial.
 
 Parte 2- Juego
 
@@ -76,5 +78,12 @@ Assets del juego
 ![2coop](https://i.imgur.com/64SZbij.png)
 ![diagrama](https://i.imgur.com/oC5YEw8.png)
 
+#Pantalla de introducir nombre
+![introducir](https://i.imgur.com/rLjSVGN.png)
+
+#Pantalla de rankings
+![leaderboard](https://i.imgur.com/Vztc2hd.png)
+
 #Api Rest diagrama de clases
 ![diagramaRest](https://i.imgur.com/TJuKD6P.png)
+
