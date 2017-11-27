@@ -8,6 +8,9 @@ var flechaDer;
 var count;
 var style = { font: "28px Press Start 2P", fill: "#fff", tabs: [150, 150, 200] };
 var textoEntero;
+var text;
+var styleText;
+var t;
 
 Game.IntroducirNombre = function (game) {
     this.Nivel = null;
@@ -41,14 +44,20 @@ Game.IntroducirNombre.prototype = {
     create: function (game) {
         fondoNegro = this.add.sprite(0, 0, 'fondoNegro');
         flechaDer=this.input.keyboard.createCursorKeys();
+
+        text = "Introduce tus iniciales",
+        styleText = { font: "65px Arial", fill: "#ff0044", align: "center" },
+        t = game.add.text(game.world.centerX-300, 100, text, styleText),
+
         //Coge las fuentes de google
         WebFontConfig = {
             active: function () { this.time.events.add(Phaser.Timer.SECOND, createText, this); },
 
             google: {
                 families: ['Press Start 2P']
-            }
+            },
 
+      
         };
 
         count = 0;

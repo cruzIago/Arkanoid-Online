@@ -30,7 +30,7 @@ Game.Leaderboard.prototype={
         loadScores(function(puntuacion){
             for(var i=0;i<puntuacion.length;i++){
             //puntuaciones[0]=puntuacion[0].score+", "+puntuacion[0].who;}
-            game.add.text(250,270+i*57
+            game.add.text(200,270+i*57
                 ,puntuacion[i].score+"---"+puntuacion[i].who,
                 {boundsAlignH:"center",boundsAlignV:"middle"}).addColor('#ffffff',0);
         }
