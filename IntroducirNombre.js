@@ -53,7 +53,7 @@ Game.IntroducirNombre.prototype = {
 
         count = 0;
         for (var i = 0; i < 3; i++) {
-            texto[i] = this.add.text(this.world.centerX + i * 40, this.world.centerY, "_", style);
+            texto[i] = this.add.text(this.world.centerX-40 + i * 40, this.world.centerY, "_", style);
         }
 
         //texto.anchor.setTo(0.5, 0.5);
@@ -73,7 +73,7 @@ Game.IntroducirNombre.prototype = {
     },
     
     crearBoton: function (game, x, y, w, h, callback) {
-        botonNombre = game.add.button(x-250, y, 'enter');
+        botonNombre = game.add.button(x-255, y, 'enter');
         botonNombre.onInputUp.add(arriba, this);
         function arriba() {
             textoEntero=texto[0].text+texto[1].text+texto[2].text;
