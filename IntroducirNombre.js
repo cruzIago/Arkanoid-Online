@@ -1,7 +1,7 @@
 var fondoNegro;
 var texto;
 var botonNombre;
-var puntuacion;
+var puntosRe;
 var nombre;
 var texto;
 var flechaDer;
@@ -34,7 +34,7 @@ function crearPuntos(puntuacion, callback) {
 }
 Game.IntroducirNombre.prototype = {
     init: function (puntos) {
-        puntuacion = puntos;
+        puntosRe = puntos;
         texto=[3];
         count=0;
     },
@@ -78,7 +78,7 @@ Game.IntroducirNombre.prototype = {
         function arriba() {
             textoEntero=texto[0].text+texto[1].text+texto[2].text;
             var puntuacion = {
-                score: 100,
+                score: puntosRe,
                 who: textoEntero
             }
             crearPuntos(puntuacion, function () {
