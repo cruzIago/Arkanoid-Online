@@ -75,3 +75,6 @@ Assets del juego
 
 ![2coop](https://i.imgur.com/64SZbij.png)
 ![diagrama](https://i.imgur.com/oC5YEw8.png)
+
+#Api Rest diagrama de clases
+![diagramaRest](https://imgur.com/a/ZfBp1)
