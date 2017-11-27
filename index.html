@@ -29,6 +29,7 @@
         <script type="text/javascript">
             window.onload = function(){
                 var game = new Phaser.Game(800, 800, Phaser.AUTO,'');
+                
                     game.state.add('Boot', Game.Boot);
                     game.state.add('Preloader', Game.Preloader);
                     game.state.add('Menu', Game.Menu);
@@ -37,16 +38,16 @@
                     game.state.add('Leaderboard', Game.Leaderboard);
                     
                     game.state.start('Boot');
-     };
-    </script>
+        };
+        </script>
 
-<script src = "phaser.js"></script>
-<script src = "Boot.js"></script>
-<script src = "Preloader.js"></script>
-<script src = "Menu.js"></script>
-<script src = "Nivel.js"></script>
-<script src = "IntroducirNombre.js"></script>
-<script src = "Leaderboard.js"></script>
+        <script src = "phaser.js"></script>
+        <script src = "Boot.js"></script>
+        <script src = "Preloader.js"></script>
+        <script src = "Menu.js"></script>
+        <script src = "Nivel.js"></script>
+        <script src = "IntroducirNombre.js"></script>
+        <script src = "Leaderboard.js"></script><!-- lógica de API REST -->
     </body>
 
 </html>

@@ -5,6 +5,19 @@ Game.Leaderboard = function (game) {
     this.IntroducirNombre = null;
 };
 
+function loadScores (callback) {
+    $ajax({
+        url: 'http://localhost:8080/puntos',
+        headers:{
+            "Acces-Control-Allow-Origin":"true",
+            "Content-Type":"application/json"
+        }
+    }).done(function (puntuacion){
+        console.log('Items loaded: ' +JSON.stringify(puntuacion));
+        callback(puntuacion);
+    })
+}
+
 Game.Leaderboard.prototype={
     create: function (game) {
         fondoLeaderboard = this.add.sprite(0, 0, 'fondoLeaderboard');
@@ -12,7 +25,15 @@ Game.Leaderboard.prototype={
         fondoLeaderboard.animations.add('girar', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10, true);
         fondoLeaderboard.animations.play('girar');
 
-        this.crearBoton(game, game.world.centerX-170,390,300,100, 
+        loadScores (function(puntuacion){
+            for(var i=0; i<puntuacion.length; i++){
+                game.add.text(200, 270+i*57
+                , puntuacion [i].score+"---"+puntuacion[i].who,
+                {boundsAlignH:"center",boundsAlignV:"middle"});
+            }
+        });
+
+        this.crearBoton(game, game.world.centerX-140,750,300,100, 
             function(){
             });
     }, 

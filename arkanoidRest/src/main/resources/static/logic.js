@@ -5,7 +5,7 @@ function loadScores(callback) {
     }).done(function (puntuacion) {
         console.log('Items loaded: ' + JSON.stringify(puntuacion));
         callback(puntuacion);
-    })
+    });
 }
 
 //Función de creación de puntuaciones

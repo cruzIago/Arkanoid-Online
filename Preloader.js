@@ -22,7 +22,7 @@ Game.Preloader.prototype = {
         this.load.image('PalaP3', 'assets/Pala0.png');
         this.load.spritesheet('Bloques', 'assets/Bloques.png', 32, 8);
         this.load.spritesheet('PowerUps', 'assets/powerups.png', 22, 15 );
-        this.load.image('fondoNegro', 'assets/fondoNegro.png');
+        this.load.image('fondoNegro', 'assets/fondoNegro.jpg');
         this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
         this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
         
