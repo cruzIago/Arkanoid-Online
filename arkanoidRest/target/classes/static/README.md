@@ -35,6 +35,8 @@ Github: cruzIago<br>
 - Gestiona el envio de datos entre jugadores como el chat
 - Entre esos datos contaremos tambien el envio de posiciones de pala, pelota y bloques que ha golpeado el otro usuario
 
+# Flujo
+Comenzamos ejecutando el .jar, Arkanoid-Online Rest.jar para tener nuestro servidor REST encendido. Accedemos a Index.html para comenzar la partida. Cuando destruyamos todos los bloques o perdamos las bolas, habrá que introducir el nombre, que será como máximo de 3 letras, pudiendo moverse de izquierda a derecha para introducirlas. Pulsar Enter para acceder a la tabla de puntuaciones y saber si hemos sido capaces de superar algún record. Con siguiente volveremos al menu inicial.
 
 Parte 2- Juego
 
@@ -63,15 +65,26 @@ Assets del juego
 ![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/powerups.png?raw=true)
 ![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/volver.png?raw=true)
 
-#Menú de inicio, se puede escoger entre dos opciones: Jugar solo (1 Jugador) o jugar con alguien (2 Jugadores).
+# Menú de inicio, se puede escoger entre dos opciones: Jugar solo (1 Jugador) o jugar con alguien (2 Jugadores).
 
 ![inicio](https://i.imgur.com/Qelf1OZ.png)
 
-#Pantalla in-game del modo 1 jugador (1 Barra y 1 Bola)
+# Pantalla in-game del modo 1 jugador (1 Barra y 1 Bola)
 
 ![1solo](https://i.imgur.com/xLq8uIz.png)
 
-#Pantalla in-game del modo 2 jugadores (2 Barras y 2 Bolas)
+# Pantalla in-game del modo 2 jugadores (2 Barras y 2 Bolas)
 
 ![2coop](https://i.imgur.com/64SZbij.png)
 ![diagrama](https://i.imgur.com/oC5YEw8.png)
+
+# Pantalla de introducir nombre
+![introducir](https://i.imgur.com/rLjSVGN.png)
+
+# Pantalla de rankings
+![leaderboard](https://i.imgur.com/Vztc2hd.png)
+
+
+# Api Rest diagrama de clases
+![diagramaRest](https://i.imgur.com/MNHDbLB.png)
+
