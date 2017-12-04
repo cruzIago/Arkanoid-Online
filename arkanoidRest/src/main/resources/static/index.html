@@ -1,21 +1,54 @@
-
 <html>
     <head>
-        <title>PruebaRest</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-            <script src="logic.js"></script>
+        <title>Arkanoid-Online</title>
+        <script src = "jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <script>
+            function updatePassword(){
+                
+                        console.log('updatePassword');
+                
+                    }
+                
+                    $(document).ready(function(){
+                
+                
+                       // $('.btn-primary').on('click',function(){ - This too works
+                         //   console.log('foo');     
+                        //});
+                
+                         $('.btn-primary').on('click',updatePassword);
+                
+                
+                    });
+         </script>
     </head>
-    
-<body>
-    <h1>Una prueba</h1>
-    <div id='muestra'>
-    </div>
-    <hr>
-    <input id='puntuacion' type='text'>
-    <input id='nombre' type='text'>
-    
-    <button id='agregar'>Agregar</button>
-</body>
+  
+    </head>
+    <body>
+            
+        <script type="text/javascript">
+            window.onload = function(){
+                var game = new Phaser.Game(800, 800, Phaser.AUTO,'');
+                
+                    game.state.add('Boot', Game.Boot);
+                    game.state.add('Preloader', Game.Preloader);
+                    game.state.add('Menu', Game.Menu);
+                    game.state.add('Nivel', Game.Nivel);
+                    game.state.add('IntroducirNombre', Game.IntroducirNombre);
+                    game.state.add('Leaderboard', Game.Leaderboard);
+                    
+                    game.state.start('Boot');
+        };
+        </script>
+
+        <script src = "phaser.js"></script>
+        <script src = "Boot.js"></script>
+        <script src = "Preloader.js"></script>
+        <script src = "Menu.js"></script>
+        <script src = "Nivel.js"></script>
+        <script src = "IntroducirNombre.js"></script>
+        <script src = "Leaderboard.js"></script>
+    </body>
+
 </html>

@@ -1,5 +1,7 @@
 package es.juegosenred.arkanoidrest;
-
+/**
+* Clase para la generación de puntuaciones en el servidor REST.
+*/
 public class Puntuacion {
 
     private long id;//id de la puntuacion para diferenciar entre usuarios del mismo nombre
@@ -7,7 +9,7 @@ public class Puntuacion {
     private String who;
 
     public Puntuacion() {
-        this.who="AKO";
+        this.who="AKO";//Acronimo para los cuerpos por defecto de ArKanoid-Online
     }
 
     public Puntuacion(int id, int score, String who) {
