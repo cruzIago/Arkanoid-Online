@@ -14,7 +14,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class arkanoidHandler extends TextWebSocketHandler {
 
-    private Map<String, WebSocketSession> sesiones = new ConcurrentHashMap();
+    private Map<String, WebSocketSession> sesiones = new ConcurrentHashMap(); //Mapa para almacenar mensajes
     private ObjectMapper mapeador = new ObjectMapper();
 
     @Override
@@ -29,23 +29,26 @@ public class arkanoidHandler extends TextWebSocketHandler {
         sesiones.remove(sesion.getId());
 
     }
-
+    
+    //Manejamos las entradas en el servidor websocket 
     @Override
     protected void handleTextMessage(WebSocketSession sesion, TextMessage mensaje) throws Exception {
         try{
         System.out.println("Mensaje recibido: " + mensaje.getPayload());
         JsonNode nodo = mapeador.readTree(mensaje.getPayload());
-        envioParticipantes(sesion, nodo);
+        
+        envioInforArkanoid(sesion, nodo);
         }catch(Exception e){
             System.out.println(e.getLocalizedMessage());
         }
     }
-
-    private void envioParticipantes(WebSocketSession sesion, JsonNode nodo) throws IOException {
+    //Enviamos el mensaje a los usuarios que no son el que lo envia.
+    //Control de los mensajes que se envian y recibe se controlará en el cliente
+    private void envioInforArkanoid(WebSocketSession sesion, JsonNode nodo) throws IOException {
         System.out.println("Mensaje enviado: " + nodo.toString());
         ObjectNode nuevo = mapeador.createObjectNode();
         nuevo.put("nombre", nodo.get("nombre").asText());
-        nuevo.put("cuerpo", nodo.get("cuerpo").asText());
+        nuevo.put("valor", nodo.get("valor").asText());
         for (WebSocketSession participes : sesiones.values()) {
             if (!participes.getId().equals(sesion.getId())) {
                 participes.sendMessage(new TextMessage(nuevo.toString()));
@@ -53,5 +56,7 @@ public class arkanoidHandler extends TextWebSocketHandler {
         }
 
     }
+    
+    
 
 }
