@@ -47,8 +47,12 @@ public class arkanoidHandler extends TextWebSocketHandler {
     private void envioInforArkanoid(WebSocketSession sesion, JsonNode nodo) throws IOException {
         System.out.println("Mensaje enviado: " + nodo.toString());
         ObjectNode nuevo = mapeador.createObjectNode();
-        nuevo.put("nombre", nodo.get("nombre").asText());
-        nuevo.put("valor", nodo.get("valor").asText());
+        nuevo.put("who", nodo.get("who").asText());
+        nuevo.put("posicionPala", nodo.get("posicionPala").asDouble());
+        nuevo.put("velociadBola",nodo.get("velocidadBola").asInt());
+        nuevo.put("posicionBola",nodo.get("posicionBola").asDouble());
+        nuevo.put("bloques",nodo.get("bloques").asText());
+        nuevo.put("powerUp",nodo.get("powerUp").asInt());
         for (WebSocketSession participes : sesiones.values()) {
             if (!participes.getId().equals(sesion.getId())) {
                 participes.sendMessage(new TextMessage(nuevo.toString()));

@@ -19,7 +19,7 @@ var puntuacion = 0;
 var bolasperdidas = 0;
 var pantallaTitulo;
 var nJugadores;
-
+var connection;
 Game.Nivel = function (game) {
     this.pantallaTitulo = null;
     this.crearBoton1 = null;
@@ -29,11 +29,16 @@ Game.Nivel = function (game) {
 var fondo;      //hay que meter la imagen en la carpeta assets
 Game.Nivel.prototype = {
     init: function (jugadores) {
+        connection = new WebSocket('ws://localhost:8080/demo');
+        //Si hay un error con la conexión 
+        connection.onerror = function (e) {
+            console.log("WS error: " + e);
+        }
         nJugadores = jugadores;
-        bInit=true;
-        bolasperdidas=0;
-        puntuacion=0;
-        vel=150;
+        bInit = true;
+        bolasperdidas = 0;
+        puntuacion = 0;
+        vel = 150;
     },
     create: function (game) {
         fondo = this.add.sprite(0, 0, 'fondo');
@@ -122,14 +127,26 @@ Game.Nivel.prototype = {
 
         if (controles.left.isDown) {
             pala_1.body.velocity.x = -vel;
+            var mensaje={
+                who:"1",
+                posicionPala:pala_1.body.x,
+                velocidadBola:bola_1.velocity,
+            }
+            connection.send(JSON.stringify(mensaje));
         } else if (controles.right.isDown) {
             pala_1.body.velocity.x = vel;
-
+            var mensaje={
+                nombre:"jugador1",
+                velocidadPala=pala_1.body.velocity.x
+            }
+            connection.send(JSON.stringify(mensaje));
         } else if (controles.up.isDown) {
             lanzarBola();
         } else if (this.input.keyboard.isDown(Phaser.Keyboard.W)) {
             lanzarBola();
         }
+
+       
         if (bInit) {
             bola_1.x = pala_1.x;
             bola_1.y = pala_1.y - 36;
@@ -146,7 +163,15 @@ Game.Nivel.prototype = {
 
         }
 
+        connection.onmessage = function (msg) {
+            console.log("Mensaje de WS" + msg.data);
+            var jugador2 = JSON.parse(msg.data);
+            pala_2.body.velocity.x=jugador2.valor;
+            if(jugador2)
+        }
+
         //Movimiento Jugador 2
+        /*
         if (nJugadores) {
             pala_2.body.velocity.x = 0;
 
@@ -156,12 +181,13 @@ Game.Nivel.prototype = {
             } else if (this.input.keyboard.isDown(Phaser.Keyboard.D)) {
                 pala_2.body.velocity.x = vel;
             }
-        }
-        if (vel == 0) { 
+        }*/
+
+        if (vel == 0) {
             this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
-                this.state.start('IntroducirNombre',true,false,puntuacion);       //lleva a la pantalla para introducir el nombre en el Leaderboard
-            
-            },this); 
+                this.state.start('IntroducirNombre', true, false, puntuacion);       //lleva a la pantalla para introducir el nombre en el Leaderboard
+
+            }, this);
         }
 
     },
@@ -292,3 +318,5 @@ function matarj2() {
         }
     }
 }
+
+
