@@ -2,11 +2,11 @@ var botonLocal;
 var botonCrearSala;
 var pantallaSalas
 
-Game.Leaderboard = function (game) {
+Game.Salas= function (game) {
     this.Menu = null;
 };
 
-Game.Menu.prototype={
+Game.Salas.prototype={
     create: function (game) {
         pantallaSalas = game.add.sprite(0,0,'pantallaSalas');
 
