@@ -22,8 +22,8 @@ Game.Preloader.prototype = {
         this.load.image('pantallaTitulo', 'assets/BACKGROUND.png');
         this.load.image('fondo', 'assets/background_ingame.png');
         this.load.image('fondoNegro', 'assets/fondoNegro.jpg');
-        this.load.image('pantallaSalas', 'assets/fondoNegro.jpg');
-        this.load.image('fondoLeaderboard', 'assets/Mapa multi.png');
+        this.load.image('pantallaSalas', 'assets/Mapa multi.jpg');
+        this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
         this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
         
           //BOLAS
