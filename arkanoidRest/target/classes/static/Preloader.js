@@ -11,12 +11,12 @@ Game.Preloader.prototype = {
           //BOTONES
         this.load.image('botonLeaderboard','assets/LEADERBOARD.png');
         this.load.image('siguiente','assets/siguiente.png');
-        this.load.image('enter','assets/ENTER.png');
+        this.load.image('botonStart','assets/START.png');
         //this.load.image('botonJugar','assets/asdf.png');
         //this.load.image('botonJugar','assets/asdf.png');
         this.load.image('botonVolver', 'assets/volver.png');
-        this.load.image('boton1J', 'assets/1JUGADOR.png');
-        this.load.image('boton2J', 'assets/2JUGADORES.png');
+        this.load.image('botonLocal', 'assets/LOCAL.png');
+        this.load.image('botonCrearSala', 'assets/2JUGADORES.png');
 
           //FONDOS
         this.load.image('pantallaTitulo', 'assets/BACKGROUND.png');
