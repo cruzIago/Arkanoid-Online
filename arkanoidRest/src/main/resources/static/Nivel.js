@@ -260,7 +260,6 @@ function goPU(x, y) {
 
 function gameover() {
     vel = 0;
-
     //FALTA TEXTO DE HAS PERDIDO Y SALIR DE LA PARTIDA
 }
 
