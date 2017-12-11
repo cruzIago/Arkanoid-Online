@@ -1,13 +1,15 @@
-Game.Salas=function(game){
-    
-};
-
-var boton1J;
+var botonLocal;
 var botonCrearSala;
+var pantallaSalas
 
+Game.Leaderboard = function (game) {
+    this.Menu = null;
+};
 
 Game.Menu.prototype={
     create: function (game) {
+        pantallaSalas = game.add.sprite(0,0,'pantallaSalas');
+
         //botón para acceder al juego (1J)
         this.crearbotonLocal(game, game.world.centerX-170,390,300,100, 
             function(){
