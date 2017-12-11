@@ -50,7 +50,8 @@ public class arkanoidHandler extends TextWebSocketHandler {
         nuevo.put("who", nodo.get("who").asText());
         nuevo.put("posicionPala", nodo.get("posicionPala").asDouble());
         nuevo.put("velociadBola",nodo.get("velocidadBola").asInt());
-        nuevo.put("posicionBola",nodo.get("posicionBola").asDouble());
+        nuevo.put("posicionBolaX",nodo.get("posicionBolaX").asDouble());
+        nuevo.put("posicionBolaY",nodo.get("posicionBolaY").asDouble());
         nuevo.put("bloques",nodo.get("bloques").asText());
         nuevo.put("powerUp",nodo.get("powerUp").asInt());
         for (WebSocketSession participes : sesiones.values()) {

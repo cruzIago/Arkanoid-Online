@@ -130,7 +130,11 @@ Game.Nivel.prototype = {
             var mensaje={
                 who:"1",
                 posicionPala:pala_1.body.x,
-                velocidadBola:bola_1.velocity,
+                velocidadBola:bola_1.velocity.x,
+                posicionBolaX:bola_1.body.x,
+                posicionBolaY:bola_1.body.y,
+                bloques:,
+                powerUp:0
             }
             connection.send(JSON.stringify(mensaje));
         } else if (controles.right.isDown) {
