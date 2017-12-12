@@ -20,6 +20,9 @@ var bolasperdidas = 0;
 var pantallaTitulo;
 var nJugadores;
 var connection;
+var esperandoJ2;
+var j2Unido = false;
+
 Game.Nivel = function (game) {
     this.pantallaTitulo = null;
     this.crearBoton1 = null;
@@ -102,6 +105,12 @@ Game.Nivel.prototype = {
             bola_2.body.collideWorldBounds = true;
             bola_2.body.bounce.set(1);
             bola_2.events.onOutOfBounds.add(matarj2, this);
+        }
+
+
+        //Crear mensaje de "esperando J2"
+        if (nJugadores){
+        esperandoJ2 = this.add.sprite(200, 300, 'esperando');
         }
         //Creamos un temporizador
         timer = this.time.create(false);
@@ -282,12 +291,13 @@ function lanzarBola() {
 
     if (bInit) {
         bInit = false;
-        
         bola_1.body.velocity.x = -90;
         bola_1.body.velocity.y = -250;
         if (nJugadores) {
-            bola_2.body.velocity.x = 90;
-            bola_2.body.velocity.y = -250;
+            
+                bola_2.body.velocity.x = 90;
+                bola_2.body.velocity.y = -250;
+            
         }
         
         if(jugadorActual==1){
@@ -421,4 +431,9 @@ function matarj2() {
     }
 }
 
+function initJ2(){
+    esperandoJ2.destroy();
+    j2Unido = true;
+
+}
 
