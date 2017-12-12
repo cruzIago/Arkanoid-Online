@@ -31,13 +31,13 @@ Game.Leaderboard.prototype={
             for(var i=0;i<puntuacion.length;i++){
             //puntuaciones[0]=puntuacion[0].score+", "+puntuacion[0].who;}
             game.add.text(200,270+i*57
-                ,puntuacion[i].score+"---"+puntuacion[i].who,
-                {boundsAlignH:"center",boundsAlignV:"middle"}).addColor('#ffffff',0);
+                ,puntuacion[i].who+"........................"+puntuacion[i].score+' ptos',
+                {font: "35px Arial", boundsAlignH:"center",boundsAlignV:"middle"}).addColor('#ffffff',0);
         }
     });
         
         //game.add.text(game.world.centerX,game.world.centerY,""+puntuaciones,{boundsAlignH:"center",boundsAlignV:"middle"});
-        this.crearBoton(game, 550,700,300,100, 
+        this.crearBoton(game, 550,720,300,100, 
             function(){
             });
     }, 
@@ -49,7 +49,7 @@ Game.Leaderboard.prototype={
         function arriba(){
             game.state.start('Menu',true,false);
             }    
-            botonMenu.scale.setTo(0.45,0.45);
+            //botonMenu.scale.setTo(0.45,0.45);
     }
     
 }
