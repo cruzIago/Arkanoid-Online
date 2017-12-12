@@ -244,6 +244,16 @@ Game.Nivel.prototype = {
 
     },
     actualizarEstado: function (game) {
+        if(jugadorActual==2){
+            initJ2();
+        connection.addEventListener('open',function(e){
+            console.log("Conectado: "+e);
+            var mensaje={
+                sala:"2"
+            }
+            connection.send(JSON.stringify(mensaje));
+        });
+    }
         connection.onmessage = function (msg) {
 
             console.log("Mensaje recibido: " + msg.data);
@@ -259,6 +269,8 @@ Game.Nivel.prototype = {
                     lanzarBola();
                 }
 
+            }else if(mensaje.sala=="2"){
+                initJ2();
             }
             if(nJugadores){
             if (mensaje.who == 2) {
