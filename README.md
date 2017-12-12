@@ -19,11 +19,11 @@ Github: cruzIago<br>
 # Juego
 
 - Juego de ruptura de bloques mediante el uso de rebotes con una pelota y una pala<br>
-- Si la pelota cae, se perderá una vida con un máximo de 3<br>
-- Sala de espera para unirse a partidas donde se podrá chatear<br>
+- Si la pelota cae, se perderá. En caso de 2 jugadores, tendran que caer las dos bolas<br>
+- Sala de espera para unirse a partidas<br>
 - Partidas de 2 jugadores cooperativas para romper los bloques en pantalla<br>
 - Puntuaciones para una tabla de clasificación<br>
-- Las puntuaciones serán calculadas dependiendo del tiempo y bloques destruidos<br>
+- Las puntuaciones serán calculadas dependiendo de bloques destruidos<br>
 
 # Cliente
 
@@ -37,6 +37,8 @@ Github: cruzIago<br>
 
 # Flujo
 Comenzamos ejecutando el .jar, Arkanoid-Online Rest.jar para tener nuestro servidor REST encendido. Accedemos a Index.html para comenzar la partida. Cuando destruyamos todos los bloques o perdamos las bolas, habrá que introducir el nombre, que será como máximo de 3 letras, pudiendo moverse de izquierda a derecha para introducirlas. Pulsar Enter para acceder a la tabla de puntuaciones y saber si hemos sido capaces de superar algún record. Con siguiente volveremos al menu inicial.
+# Video
+[![video](https://img.youtube.com/vi/4oOUtWo8wXo/0.jpg)](https://www.youtube.com/watch?v=4oOUtWo8wXo)
 
 Parte 2- Juego
 
