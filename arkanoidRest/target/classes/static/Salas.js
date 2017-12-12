@@ -60,7 +60,7 @@ Game.Salas.prototype = {
 
     mensajeRecibido: function (game) {
         conexionSalas.onmessage = function (msg) {
-            barra=game.add.button(180,600,'botonLocal');
+            barra=game.add.button(-5,0,'botonSala');
             barra.onInputUp.add(entrar,this);
             function entrar(){
                 game.state.start('Nivel',true,false,true,2);

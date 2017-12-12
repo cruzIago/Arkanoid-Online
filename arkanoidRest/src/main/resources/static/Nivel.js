@@ -282,7 +282,7 @@ Game.Nivel.prototype = {
                     lanzarBola();
                 }
                 if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
-                    downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
+                    //downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
                 }
 
             } else if (mensaje.sala == "2") {
@@ -301,7 +301,7 @@ Game.Nivel.prototype = {
                     }
                 }
                 if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
-                    downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
+                   // downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
                 }
             }
         }

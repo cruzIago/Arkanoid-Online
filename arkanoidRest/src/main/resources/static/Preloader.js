@@ -14,6 +14,7 @@ Game.Preloader.prototype = {
         this.load.image('botonStart','assets/START.png');
         //this.load.image('botonJugar','assets/asdf.png');
         //this.load.image('botonJugar','assets/asdf.png');
+        this.load.image('botonSala','assets/botonSala.png');
         this.load.image('enter','assets/ENTER.png');
         this.load.image('botonVolver', 'assets/volver.png');
         this.load.image('botonLocal', 'assets/local.png');
