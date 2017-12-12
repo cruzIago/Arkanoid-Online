@@ -26,7 +26,7 @@ Game.Preloader.prototype = {
         this.load.image('pantallaSalas', 'assets/mapaMulti.png');
         this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
         this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
-        
+        this.load.image('esperando','assets/esperando.png');
           //BOLAS
         this.load.image('Bola1', 'assets/BolaAzul.png');
         this.load.image('Bola2', 'assets/BolaRoja.png');

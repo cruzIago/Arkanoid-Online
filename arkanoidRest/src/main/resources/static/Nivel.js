@@ -108,9 +108,12 @@ Game.Nivel.prototype = {
         }
 
 
-        //Crear mensaje de "esperando J2"
+        //Crear mensaje de "esperando J2", si estás en local j2unido=true
         if (nJugadores){
         esperandoJ2 = this.add.sprite(200, 300, 'esperando');
+        }
+        else {
+            j2Unido = true;
         }
         //Creamos un temporizador
         timer = this.time.create(false);
@@ -289,7 +292,7 @@ function palaRebote(bola, pala) {
 
 function lanzarBola() {
 
-    if (bInit) {
+    if (bInit&&j2Unido) {
         bInit = false;
         bola_1.body.velocity.x = -90;
         bola_1.body.velocity.y = -250;
@@ -434,6 +437,5 @@ function matarj2() {
 function initJ2(){
     esperandoJ2.destroy();
     j2Unido = true;
-
 }
 
