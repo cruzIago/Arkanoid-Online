@@ -24,17 +24,19 @@ Game.Nivel = function (game) {
     this.pantallaTitulo = null;
     this.crearBoton1 = null;
     this.crearBoton2 = null;
+    this.Salas=null;
 };
 
 var fondo;      //hay que meter la imagen en la carpeta assets
 Game.Nivel.prototype = {
-    init: function (jugadores) {
+    init: function (jugadores,jugador) {
         connection = new WebSocket('ws://localhost:8080/demo');
         //Si hay un error con la conexión 
         connection.onerror = function (e) {
             console.log("WS error: " + e);
         }
         nJugadores = jugadores;
+        jugadorActual=jugador;//1 si es el jugador 1 (barra superior), 2 si es el jugador 2 (barra inferior)
         bInit = true;
         bolasperdidas = 0;
         puntuacion = 0;
@@ -118,37 +120,81 @@ Game.Nivel.prototype = {
                 bloque.scale.setTo(1.9, 2.5);
             }
         }
+        this.actualizarEstado(game,function(){
+
+        });
     },
 
     //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
     update: function () {
         //Movimiento Jugador 1
         pala_1.body.velocity.x = 0;
-
+        pala_2.body.velocity.x=0;
+        if(jugadorActual==1){
         if (controles.left.isDown) {
             pala_1.body.velocity.x = -vel;
             var mensaje={
-                who:"1",
+                who:jugadorActual,
+                velocidadPala:pala_1.body.velocity.x,
                 posicionPala:pala_1.body.x,
-                velocidadBola:bola_1.velocity.x,
+                velocidadBola:bola_1.body.velocity.x,
                 posicionBolaX:bola_1.body.x,
                 posicionBolaY:bola_1.body.y,
-                bloques:,
+                bloques:null,
                 powerUp:0
             }
             connection.send(JSON.stringify(mensaje));
         } else if (controles.right.isDown) {
             pala_1.body.velocity.x = vel;
             var mensaje={
-                nombre:"jugador1",
-                velocidadPala=pala_1.body.velocity.x
+                who:jugadorActual,
+                velocidadPala:pala_1.body.velocity.x,
+                posicionPala:pala_1.body.x,
+                velocidadBola:bola_1.body.velocity.x,
+                posicionBolaX:bola_1.body.x,
+                posicionBolaY:bola_1.body.y,
+                bloques:null,
+                powerUp:0
             }
             connection.send(JSON.stringify(mensaje));
+            
         } else if (controles.up.isDown) {
             lanzarBola();
-        } else if (this.input.keyboard.isDown(Phaser.Keyboard.W)) {
+        } 
+    
+    }else if(jugadorActual==2){
+        if (controles.left.isDown) {
+            pala_2.body.velocity.x = -vel;
+            var mensaje={
+                who:jugadorActual,
+                velocidadPala:pala_2.body.velocity.x,
+                posicionPala:pala_2.body.x,
+                velocidadBola:bola_2.body.velocity.x,
+                posicionBolaX:bola_2.body.x,
+                posicionBolaY:bola_2.body.y,
+                bloques:null,
+                powerUp:0
+            }
+            connection.send(JSON.stringify(mensaje));
+        } else if (controles.right.isDown) {
+            pala_2.body.velocity.x = vel;
+            var mensaje={
+                who:jugadorActual,
+                velocidadPala:pala_2.body.velocity.x,
+                posicionPala:pala_2.body.x,
+                velocidadBola:bola_2.body.velocity.x,
+                posicionBolaX:bola_2.body.x,
+                posicionBolaY:bola_2.body.y,
+                bloques:null,
+                powerUp:0
+            }
+            connection.send(JSON.stringify(mensaje));
+            
+        } else if (controles.up.isDown) {
             lanzarBola();
-        }
+        } 
+
+    }
 
        
         if (bInit) {
@@ -167,12 +213,6 @@ Game.Nivel.prototype = {
 
         }
 
-        connection.onmessage = function (msg) {
-            console.log("Mensaje de WS" + msg.data);
-            var jugador2 = JSON.parse(msg.data);
-            pala_2.body.velocity.x=jugador2.valor;
-            if(jugador2)
-        }
 
         //Movimiento Jugador 2
         /*
@@ -195,17 +235,41 @@ Game.Nivel.prototype = {
         }
 
     },
+    actualizarEstado:function(game){
+        connection.onmessage=function(msg){
+            
+            console.log("Mensaje recibido: "+msg.data);
+            var mensaje=JSON.parse(msg.data);
+            if(mensaje.who==1){
+                pala_1.body.velocity.x=mensaje.velocidadPala;
+                pala_1.body.x=mensaje.posicionPala;
+                bola_1.body.velocity.x=mensaje.velocidadBola;
+                bola_1.body.x=mensaje.posicionBolaX;
+                bola_1.body.y=mensaje.posicionBolaY;
+                
+            }
+        }
+    }
 
 
 };
 
 function palaRebote(bola, pala) {
     var dif;
-
     if (bola.x > pala.x) {
         dif = bola.x - pala.x;
         bola.body.velocity.x = (6 * dif);
-
+        /*
+        var mensaje={
+            who:"1",
+            posicionPala:pala_1.body.x,
+            velocidadBola:bola_1.body.velocity.x,
+            posicionBolaX:bola_1.body.x,
+            posicionBolaY:bola_1.body.y,
+            bloques:null,
+            powerUp:0
+        }
+        connection.send(JSON.stringify(mensaje));*/
     } else if (bola.x < pala.x) {
         dif = pala.x - bola.x;
         bola.body.velocity.x = (-6 * dif);
@@ -228,6 +292,7 @@ function lanzarBola() {
 }
 
 function bloqueRompe(bola, bloque) {
+    
     bloque.kill();
     goPU(bloque.x, bloque.y);
     puntuacion += 10;

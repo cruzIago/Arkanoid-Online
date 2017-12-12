@@ -29,7 +29,7 @@ Game.Menu.prototype={
         botonStart=game.add.button(x+70,y,'botonStart');
         botonStart.onInputUp.add(arriba,this); 
         function arriba(){
-            game.state.start('Salas');
+            game.state.start('Salas',true,false);
             }    
             botonStart.scale.setTo(0.45,0.45);
        // boton1.height=h/2; 

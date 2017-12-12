@@ -29,31 +29,38 @@ public class arkanoidHandler extends TextWebSocketHandler {
         sesiones.remove(sesion.getId());
 
     }
-    
+
     //Manejamos las entradas en el servidor websocket 
     @Override
     protected void handleTextMessage(WebSocketSession sesion, TextMessage mensaje) throws Exception {
-        try{
-        System.out.println("Mensaje recibido: " + mensaje.getPayload());
-        JsonNode nodo = mapeador.readTree(mensaje.getPayload());
-        
-        envioInforArkanoid(sesion, nodo);
-        }catch(Exception e){
+        try {
+            System.out.println("Mensaje recibido: " + mensaje.getPayload());
+            JsonNode nodo = mapeador.readTree(mensaje.getPayload());
+            if (nodo.has("who")) {
+                envioInforArkanoid(sesion, nodo);
+            }else {
+                envioCreacionSala(sesion,nodo);
+            }
+
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
+
     //Enviamos el mensaje a los usuarios que no son el que lo envia.
     //Control de los mensajes que se envian y recibe se controlará en el cliente
     private void envioInforArkanoid(WebSocketSession sesion, JsonNode nodo) throws IOException {
         System.out.println("Mensaje enviado: " + nodo.toString());
         ObjectNode nuevo = mapeador.createObjectNode();
-        nuevo.put("who", nodo.get("who").asText());
+        
+        nuevo.put("who", nodo.get("who").asInt());
+        nuevo.put("velocidadPala",nodo.get("velocidadPala").asDouble());
         nuevo.put("posicionPala", nodo.get("posicionPala").asDouble());
-        nuevo.put("velociadBola",nodo.get("velocidadBola").asInt());
-        nuevo.put("posicionBolaX",nodo.get("posicionBolaX").asDouble());
-        nuevo.put("posicionBolaY",nodo.get("posicionBolaY").asDouble());
-        nuevo.put("bloques",nodo.get("bloques").asText());
-        nuevo.put("powerUp",nodo.get("powerUp").asInt());
+        nuevo.put("velociadBola", nodo.get("velocidadBola").asInt());
+        nuevo.put("posicionBolaX", nodo.get("posicionBolaX").asDouble());
+        nuevo.put("posicionBolaY", nodo.get("posicionBolaY").asDouble());
+        nuevo.put("bloques", nodo.get("bloques").asText());
+        nuevo.put("powerUp", nodo.get("powerUp").asInt());
         for (WebSocketSession participes : sesiones.values()) {
             if (!participes.getId().equals(sesion.getId())) {
                 participes.sendMessage(new TextMessage(nuevo.toString()));
@@ -61,7 +68,17 @@ public class arkanoidHandler extends TextWebSocketHandler {
         }
 
     }
-    
-    
+
+    private void envioCreacionSala(WebSocketSession sesion, JsonNode nodo) throws IOException {
+        System.out.println("Sala Creada: " + nodo.toString());
+        ObjectNode nuevo = mapeador.createObjectNode();
+        System.out.println("funciona");
+        nuevo.put("sala",nodo.get("sala").asText());
+        for (WebSocketSession participes : sesiones.values()) {
+            if (!participes.getId().equals(sesion.getId())) {
+                participes.sendMessage(new TextMessage(nuevo.toString()));
+            }
+        }
+    }
 
 }

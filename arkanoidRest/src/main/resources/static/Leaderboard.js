@@ -49,7 +49,7 @@ Game.Leaderboard.prototype={
         function arriba(){
             game.state.start('Menu',true,false);
             }    
-            boton2.scale.setTo(0.45,0.45);
+            botonMenu.scale.setTo(0.45,0.45);
     }
     
 }

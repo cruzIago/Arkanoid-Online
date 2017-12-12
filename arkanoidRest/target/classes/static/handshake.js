@@ -21,6 +21,7 @@ $(document).ready(function () {
          */
         
         var message = JSON.parse(msg.data);
+        
         $('#chat').val($('#chat').val() + "\n" + message.nombre + ":  " + message.valor);
     }
     connection.onclose = function () {
