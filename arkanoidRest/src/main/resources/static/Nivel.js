@@ -109,8 +109,8 @@ Game.Nivel.prototype = {
 
 
         //Crear mensaje de "esperando J2", si estás en local j2unido=true
-        if (nJugadores){
-        esperandoJ2 = this.add.sprite(200, 300, 'esperando');
+        if (nJugadores) {
+            esperandoJ2 = this.add.sprite(200, 300, 'esperando');
         }
         else {
             j2Unido = true;
@@ -141,8 +141,8 @@ Game.Nivel.prototype = {
     update: function () {
         //Movimiento Jugador 1
         pala_1.body.velocity.x = 0;
-        if(nJugadores){
-        pala_2.body.velocity.x = 0;
+        if (nJugadores) {
+            pala_2.body.velocity.x = 0;
         }
         if (jugadorActual == 1) {
             if (controles.left.isDown) {
@@ -156,7 +156,9 @@ Game.Nivel.prototype = {
                     posicionBolaX: bola_1.body.x,
                     posicionBolaY: bola_1.body.y,
                     bloques: null,
-                    powerUp: 0
+                    powerUp: -1,
+                    powerUpX: 0,
+                    powerUpY: 0
                 }
                 connection.send(JSON.stringify(mensaje));
             } else if (controles.right.isDown) {
@@ -170,52 +172,62 @@ Game.Nivel.prototype = {
                     posicionBolaX: bola_1.body.x,
                     posicionBolaY: bola_1.body.y,
                     bloques: null,
-                    powerUp: 0
+                    powerUp: -1,
+                    powerUpX: 0,
+                    powerUpY: 0
                 }
                 connection.send(JSON.stringify(mensaje));
 
             } else if (controles.up.isDown) {
-                lanzarBola();
-            }
-
-        } 
-        if(nJugadores){
-        if (jugadorActual == 2) {
-            if (controles.left.isDown) {
-                pala_2.body.velocity.x = -vel;
-                var mensaje = {
-                    who: jugadorActual,
-                    velocidadPala: pala_2.body.velocity.x,
-                    posicionPala: pala_2.body.x,
-                    velocidadBolaX: bola_2.body.velocity.x,
-                    velocidadBolaY: bola_2.body.velocity.y,
-                    posicionBolaX: bola_2.body.x,
-                    posicionBolaY: bola_2.body.y,
-                    bloques: null,
-                    powerUp: 0
+                if (bInit) {
+                    lanzarBola();
                 }
-                connection.send(JSON.stringify(mensaje));
-            } else if (controles.right.isDown) {
-                pala_2.body.velocity.x = vel;
-                var mensaje = {
-                    who: jugadorActual,
-                    velocidadPala: pala_2.body.velocity.x,
-                    posicionPala: pala_2.body.x,
-                    velocidadBolaX: bola_2.body.velocity.x,
-                    velocidadBolaY: bola_2.body.velocity.y,
-                    posicionBolaX: bola_2.body.x,
-                    posicionBolaY: bola_2.body.y,
-                    bloques: null,
-                    powerUp: 0
-                }
-                connection.send(JSON.stringify(mensaje));
-
-            } else if (controles.up.isDown) {
-                lanzarBola();
             }
 
         }
-    }
+        if (nJugadores) {
+            if (jugadorActual == 2) {
+                if (controles.left.isDown) {
+                    pala_2.body.velocity.x = -vel;
+                    var mensaje = {
+                        who: jugadorActual,
+                        velocidadPala: pala_2.body.velocity.x,
+                        posicionPala: pala_2.body.x,
+                        velocidadBolaX: bola_2.body.velocity.x,
+                        velocidadBolaY: bola_2.body.velocity.y,
+                        posicionBolaX: bola_2.body.x,
+                        posicionBolaY: bola_2.body.y,
+                        bloques: null,
+                        powerUp: -1,
+                        powerUpX: 0,
+                        powerUpY: 0
+                    }
+                    connection.send(JSON.stringify(mensaje));
+                } else if (controles.right.isDown) {
+                    pala_2.body.velocity.x = vel;
+                    var mensaje = {
+                        who: jugadorActual,
+                        velocidadPala: pala_2.body.velocity.x,
+                        posicionPala: pala_2.body.x,
+                        velocidadBolaX: bola_2.body.velocity.x,
+                        velocidadBolaY: bola_2.body.velocity.y,
+                        posicionBolaX: bola_2.body.x,
+                        posicionBolaY: bola_2.body.y,
+                        bloques: null,
+                        powerUp: -1,
+                        powerUpX: 0,
+                        powerUpY: 0
+                    }
+                    connection.send(JSON.stringify(mensaje));
+
+                } else if (controles.up.isDown) {
+                    if (bInit) {
+                        lanzarBola();
+                    }
+                }
+
+            }
+        }
 
 
         if (bInit) {
@@ -237,6 +249,7 @@ Game.Nivel.prototype = {
 
         if (vel == 0) {
             this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
+                j2Unido = false;
                 this.state.start('IntroducirNombre', true, false, puntuacion);       //lleva a la pantalla para introducir el nombre en el Leaderboard
 
             }, this);
@@ -244,16 +257,16 @@ Game.Nivel.prototype = {
 
     },
     actualizarEstado: function (game) {
-        if(jugadorActual==2){
+        if (jugadorActual == 2) {
             initJ2();
-        connection.addEventListener('open',function(e){
-            console.log("Conectado: "+e);
-            var mensaje={
-                sala:"2"
-            }
-            connection.send(JSON.stringify(mensaje));
-        });
-    }
+            connection.addEventListener('open', function (e) {
+                console.log("Conectado: " + e);
+                var mensaje = {
+                    sala: "2"
+                }
+                connection.send(JSON.stringify(mensaje));
+            });
+        }
         connection.onmessage = function (msg) {
 
             console.log("Mensaje recibido: " + msg.data);
@@ -265,25 +278,32 @@ Game.Nivel.prototype = {
                 bola_1.body.velocity.y = mensaje.velocidadBolaY;
                 bola_1.body.x = mensaje.posicionBolaX;
                 bola_1.body.y = mensaje.posicionBolaY;
-                if (mensaje.velocidadBolaY <= -250) {
+                if (mensaje.velocidadBolaY <= -250 && bInit) {
                     lanzarBola();
+                }
+                if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
+                    downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
                 }
 
-            }else if(mensaje.sala=="2"){
+            } else if (mensaje.sala == "2") {
                 initJ2();
             }
-            if(nJugadores){
-            if (mensaje.who == 2) {
-                pala_2.body.velocity.x = mensaje.velocidadPala;
-                pala_2.body.x = mensaje.posicionPala;
-                bola_2.body.velocity.x = mensaje.velocidadBolaX;
-                bola_2.body.velocity.y = mensaje.velocidadBolaY;
-                bola_2.body.x = mensaje.posicionBolaX;
-                bola_2.body.y = mensaje.posicionBolaY;
-                if (mensaje.velocidadBolaY <= -250) {
-                    lanzarBola();
+            if (nJugadores) {
+                if (mensaje.who == 2) {
+                    pala_2.body.velocity.x = mensaje.velocidadPala;
+                    pala_2.body.x = mensaje.posicionPala;
+                    bola_2.body.velocity.x = mensaje.velocidadBolaX;
+                    bola_2.body.velocity.y = mensaje.velocidadBolaY;
+                    bola_2.body.x = mensaje.posicionBolaX;
+                    bola_2.body.y = mensaje.posicionBolaY;
+                    if (mensaje.velocidadBolaY <= -250 && bInit) {
+                        lanzarBola();
+                    }
                 }
-            }}
+                if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
+                    downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
+                }
+            }
         }
     }
 
@@ -300,36 +320,23 @@ function palaRebote(bola, pala) {
         dif = pala.x - bola.x;
         bola.body.velocity.x = (-6 * dif);
     }
-}
-
-function lanzarBola() {
-
-    if (bInit&&j2Unido) {
-        bInit = false;
-        bola_1.body.velocity.x = -90;
-        bola_1.body.velocity.y = -250;
-        if (nJugadores) {
-            
-                bola_2.body.velocity.x = 90;
-                bola_2.body.velocity.y = -250;
-            
+    if (jugadorActual == 1) {
+        var mensaje = {
+            who: jugadorActual,
+            velocidadPala: pala_1.body.velocity.x,
+            posicionPala: pala_1.body.x,
+            velocidadBolaX: bola_1.body.velocity.x,
+            velocidadBolaY: bola_1.body.velocity.y,
+            posicionBolaX: bola_1.body.x,
+            posicionBolaY: bola_1.body.y,
+            bloques: null,
+            powerUp: -1,
+            powerUpX: 0,
+            powerUpY: 0
         }
-        
-        if(jugadorActual==1){
-            var mensaje = {
-                who: jugadorActual,
-                velocidadPala: pala_1.body.velocity.x,
-                posicionPala: pala_1.body.x,
-                velocidadBolaX: bola_1.body.velocity.x,
-                velocidadBolaY: bola_1.body.velocity.y,
-                posicionBolaX: bola_1.body.x,
-                posicionBolaY: bola_1.body.y,
-                bloques: null,
-                powerUp: 0
-            }
-            connection.send(JSON.stringify(mensaje));
-        }
-        if(nJugadores){
+        connection.send(JSON.stringify(mensaje));
+    }
+    if (nJugadores) {
         if (jugadorActual == 2) {
             var mensaje = {
                 who: jugadorActual,
@@ -340,11 +347,62 @@ function lanzarBola() {
                 posicionBolaX: bola_2.body.x,
                 posicionBolaY: bola_2.body.y,
                 bloques: null,
-                powerUp: 0
+                powerUp: -1,
+                powerUpX: 0,
+                powerUpY: 0
             }
             connection.send(JSON.stringify(mensaje));
         }
     }
+}
+
+function lanzarBola() {
+
+    if (bInit && j2Unido) {
+        bInit = false;
+        bola_1.body.velocity.x = -90;
+        bola_1.body.velocity.y = -250;
+        if (nJugadores) {
+
+            bola_2.body.velocity.x = 90;
+            bola_2.body.velocity.y = -250;
+
+        }
+
+        if (jugadorActual == 1) {
+            var mensaje = {
+                who: jugadorActual,
+                velocidadPala: pala_1.body.velocity.x,
+                posicionPala: pala_1.body.x,
+                velocidadBolaX: bola_1.body.velocity.x,
+                velocidadBolaY: bola_1.body.velocity.y,
+                posicionBolaX: bola_1.body.x,
+                posicionBolaY: bola_1.body.y,
+                bloques: null,
+                powerUp: -1,
+                powerUpX: 0,
+                powerUpY: 0
+            }
+            connection.send(JSON.stringify(mensaje));
+        }
+        if (nJugadores) {
+            if (jugadorActual == 2) {
+                var mensaje = {
+                    who: jugadorActual,
+                    velocidadPala: pala_2.body.velocity.x,
+                    posicionPala: pala_2.body.x,
+                    velocidadBolaX: bola_2.body.velocity.x,
+                    velocidadBolaY: bola_2.body.velocity.y,
+                    posicionBolaX: bola_2.body.x,
+                    posicionBolaY: bola_2.body.y,
+                    bloques: null,
+                    powerUp: -1,
+                    powerUpX: 0,
+                    powerUpY: 0
+                }
+                connection.send(JSON.stringify(mensaje));
+            }
+        }
 
     }
 }
@@ -352,6 +410,40 @@ function lanzarBola() {
 function bloqueRompe(bola, bloque) {
 
     bloque.kill();
+    if (jugadorActual == 1) {
+        var mensaje = {
+            who: jugadorActual,
+            velocidadPala: pala_1.body.velocity.x,
+            posicionPala: pala_1.body.x,
+            velocidadBolaX: bola_1.body.velocity.x,
+            velocidadBolaY: bola_1.body.velocity.y,
+            posicionBolaX: bola_1.body.x,
+            posicionBolaY: bola_1.body.y,
+            bloques: null,
+            powerUp: -1,
+            powerUpX: 0,
+            powerUpY: 0
+        }
+        connection.send(JSON.stringify(mensaje));
+    }
+    if (nJugadores) {
+        if (jugadorActual == 2) {
+            var mensaje = {
+                who: jugadorActual,
+                velocidadPala: pala_2.body.velocity.x,
+                posicionPala: pala_2.body.x,
+                velocidadBolaX: bola_2.body.velocity.x,
+                velocidadBolaY: bola_2.body.velocity.y,
+                posicionBolaX: bola_2.body.x,
+                posicionBolaY: bola_2.body.y,
+                bloques: null,
+                powerUp: -1,
+                powerUpX: 0,
+                powerUpY: 0
+            }
+            connection.send(JSON.stringify(mensaje));
+        }
+    }
     goPU(bloque.x, bloque.y);
     puntuacion += 10;
     textoPuntuacion.text = 'puntos: ' + puntuacion;
@@ -397,19 +489,56 @@ function activarPU(powerup, palas) {
 
 function goPU(x, y) {
     //Hay una probabilidad de 10% de que salga
-    var push = Math.floor((Math.random() * 10) + 1);
-    if (push < 6) {
-        powerup = powerups.create(x, y, 'PowerUps');
-        powerup.body.gravity.y = 70;
-        var p = Math.floor((Math.random() * 4) + 1);
-        powerup.tipo = p;
-        p *= 7;
-        powerup.animations.add('girar', [p, p + 1, p + 2, p + 3, p + 4, p + 5, p + 6], 10, true);
-        powerup.animations.play('girar');
-        //powerup.onOutOfBounds.add(powerup.kill(), this);
-
+    var push = Math.floor(Math.random() * (10 - 0 + 1)) + 0;
+    if (jugadorActual == 1) {
+        var mensaje = {
+            who: jugadorActual,
+            velocidadPala: pala_1.body.velocity.x,
+            posicionPala: pala_1.body.x,
+            velocidadBolaX: bola_1.body.velocity.x,
+            velocidadBolaY: bola_1.body.velocity.y,
+            posicionBolaX: bola_1.body.x,
+            posicionBolaY: bola_1.body.y,
+            bloques: null,
+            powerUp: push,
+            powerUpX: x,
+            powerUpY: y
+        }
+    }
+    if(nJugadores){
+        if(jugadorActual==2){
+            var mensaje = {
+                who: jugadorActual,
+                velocidadPala: pala_2.body.velocity.x,
+                posicionPala: pala_2.body.x,
+                velocidadBolaX: bola_2.body.velocity.x,
+                velocidadBolaY: bola_2.body.velocity.y,
+                posicionBolaX: bola_2.body.x,
+                posicionBolaY: bola_2.body.y,
+                bloques: null,
+                powerUp: push,
+                powerUpX:x,
+                powerUpY:y
+            }
+        }
+    }
+    if (push < 6 && push >= 0) {
+        downPU(push, x, y);
     }
 }
+
+function downPU(push, x, y) {
+    powerup = powerups.create(x, y, 'PowerUps');
+    powerup = powerups.create(x, y, 'PowerUps');
+    powerup.body.gravity.y = 70;
+    var p = Math.floor((Math.random() * 4) + 1);
+    powerup.tipo = p;
+    p *= 7;
+    powerup.animations.add('girar', [p, p + 1, p + 2, p + 3, p + 4, p + 5, p + 6], 10, true);
+    powerup.animations.play('girar');
+}
+
+
 
 function gameover() {
     vel = 0;
@@ -446,7 +575,7 @@ function matarj2() {
     }
 }
 
-function initJ2(){
+function initJ2() {
     esperandoJ2.destroy();
     j2Unido = true;
 }

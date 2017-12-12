@@ -34,7 +34,7 @@ public class arkanoidHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession sesion, TextMessage mensaje) throws Exception {
         try {
-            System.out.println("Mensaje recibido: " + mensaje.getPayload());
+           System.out.println("Mensaje recibido: " + mensaje.getPayload());
             JsonNode nodo = mapeador.readTree(mensaje.getPayload());
             if (nodo.has("who")) {
                 envioInforArkanoid(sesion, nodo);
@@ -56,12 +56,15 @@ public class arkanoidHandler extends TextWebSocketHandler {
         nuevo.put("who", nodo.get("who").asInt());
         nuevo.put("velocidadPala",nodo.get("velocidadPala").asDouble());
         nuevo.put("posicionPala", nodo.get("posicionPala").asDouble());
-        nuevo.put("velocidadBolaX", nodo.get("velocidadBolaX").asInt());
-        nuevo.put("velocidadBolaY",nodo.get("velocidadBolaY").asInt());
+        nuevo.put("velocidadBolaX", nodo.get("velocidadBolaX").asDouble());
+        nuevo.put("velocidadBolaY",nodo.get("velocidadBolaY").asDouble());
         nuevo.put("posicionBolaX", nodo.get("posicionBolaX").asDouble());
         nuevo.put("posicionBolaY", nodo.get("posicionBolaY").asDouble());
         nuevo.put("bloques", nodo.get("bloques").asText());
         nuevo.put("powerUp", nodo.get("powerUp").asInt());
+        nuevo.put("powerUpX",nodo.get("powerUpX").asDouble());
+        nuevo.put("powerUpY",nodo.get("powerUpY").asDouble());
+        
         for (WebSocketSession participes : sesiones.values()) {
             if (!participes.getId().equals(sesion.getId())) {
                 participes.sendMessage(new TextMessage(nuevo.toString()));
