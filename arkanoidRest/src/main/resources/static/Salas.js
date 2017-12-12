@@ -60,7 +60,9 @@ Game.Salas.prototype = {
 
     mensajeRecibido: function (game) {
         conexionSalas.onmessage = function (msg) {
-            barra=game.add.button(-5,0,'botonSala');
+            var sal=JSON.parse(msg.data);
+            barra=game.add.button(30,150,'botonSala');
+            game.add.text(40,165,sal.sala);
             barra.onInputUp.add(entrar,this);
             function entrar(){
                 game.state.start('Nivel',true,false,true,2);
