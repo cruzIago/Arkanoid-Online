@@ -16,12 +16,12 @@ Game.Salas.prototype = {
         pantallaSalas = game.add.sprite(0, 0, 'pantallaSalas');
 
         //botón para acceder al juego (1J)
-        this.crearbotonLocal(game, game.world.centerX - 170, 390, 300, 100,
+        this.crearbotonLocal(game, game.world.centerX + 190, 750, 300, 100,
             function () {
             });
 
         //botón para acceder al juego (2J)
-        this.crearBotonCrearSala(game, game.world.centerX - 170, 550, 300, 100,
+        this.crearBotonCrearSala(game, game.world.centerX - 370, 750, 300, 100,
             function () {   //callback: último parámetro
             });
 
@@ -33,19 +33,19 @@ Game.Salas.prototype = {
 
     //Jugar a Arkanoid en modo 1 JUGADOR
     crearbotonLocal: function (game, x, y, w, h, callback) {
-        botonLocal = game.add.button(x + 70, y, 'botonLocal');
+        botonLocal = game.add.button(x , y, 'botonLocal');
         botonLocal.onInputUp.add(arriba, this);
         function arriba() {
             game.state.start('Nivel', true, false, false, 1);
             conexionSalas.close();
         }
-        botonLocal.scale.setTo(0.45, 0.45);
+        botonLocal.scale.setTo(1, 1);
         // botonLocal.height=h/2; 
     },
 
     //Jugar a Arkanoid en modo 2 JUGADORES
     crearBotonCrearSala: function (game, x, y, w, h, callback) {
-        botonCrearSala = game.add.button(x + 70, y - 15, 'botonCrearSala');
+        botonCrearSala = game.add.button(x, y, 'botonCrearSala');
         botonCrearSala.onInputUp.add(arriba, this);
         function arriba() {
             var mensaje = {
@@ -55,7 +55,7 @@ Game.Salas.prototype = {
             game.state.start('Nivel', true, false, true, 1);
             conexionSalas.close();
         }
-        botonCrearSala.scale.setTo(0.45, 0.45);
+        botonCrearSala.scale.setTo(1, 1);
     },
 
     mensajeRecibido: function (game) {
