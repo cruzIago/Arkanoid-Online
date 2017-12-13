@@ -24,6 +24,8 @@ var esperandoJ2;
 var j2Unido = false;
 var bloqueArray=[[]];
 var rompeArray=new Array();
+var derrota;
+var victoria;
 
 Game.Nivel = function (game) {
     this.pantallaTitulo = null;
@@ -115,7 +117,8 @@ Game.Nivel.prototype = {
             bola_2.events.onOutOfBounds.add(matarj2, this);
         }
 
-
+        derrota = this.add.sprite(-300, -300, 'derrota');
+        victoria = this.add.sprite(-300, -300, 'victoria');
         //Crear mensaje de "esperando J2", si estás en local j2unido=true
         if (nJugadores) {
             esperandoJ2 = this.add.sprite(200, 300, 'esperando');
@@ -537,7 +540,9 @@ function bloqueRompe(bola, bloque) {
             bola_2.body.velocity.x = 0;
             bola_2.body.velocity.y = 0;
         }
-        //FALTA AÑADIR UN TEXTO DE HAS GANADO Y SALIR DE LA PARTIDA A LOS 2 SEGUNDOS
+        victoria.x = 250;
+        victoria.y = 400;
+        derrota.destroy();
     }
 
     console.log(bloques.children);
@@ -613,7 +618,7 @@ function goPU(x, y) {
 
 function downPU(push, x, y) {
     powerup = powerups.create(x, y, 'PowerUps');
-    powerup = powerups.create(x, y, 'PowerUps');
+    //powerup = powerups.create(x, y, 'PowerUps');
     powerup.body.gravity.y = 70;
     var p = Math.floor((Math.random() * 4) + 1);
     powerup.tipo = p;
@@ -626,6 +631,9 @@ function downPU(push, x, y) {
 
 function gameover() {
     vel = 0;
+    derrota.x = 250;
+    derrota.y = 400;
+    
     //FALTA TEXTO DE HAS PERDIDO Y SALIR DE LA PARTIDA
 }
 

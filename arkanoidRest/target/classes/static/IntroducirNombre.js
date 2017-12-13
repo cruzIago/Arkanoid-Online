@@ -103,7 +103,7 @@ Game.IntroducirNombre.prototype = {
 
 
         }
-        botonNombre.scale.setTo(0.45, 0.45);
+        botonNombre.scale.setTo(1, 1);
     }
 
 }

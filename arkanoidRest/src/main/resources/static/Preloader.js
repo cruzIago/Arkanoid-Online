@@ -28,6 +28,8 @@ Game.Preloader.prototype = {
         this.load.image('fondoLeaderboard', 'assets/leaderboard.gif');
         this.load.spritesheet('fondoLeaderboard', 'assets/leaderboard_background.png', 800, 800);
         this.load.image('esperando','assets/esperando.png');
+        this.load.image('derrota','assets/derrota.png');
+        this.load.image('victoria','assets/victoria.png');
           //BOLAS
         this.load.image('Bola1', 'assets/BolaAzul.png');
         this.load.image('Bola2', 'assets/BolaRoja.png');
