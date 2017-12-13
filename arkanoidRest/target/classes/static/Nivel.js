@@ -149,10 +149,13 @@ Game.Nivel.prototype = {
         this.actualizarEstado(game, function () {
 
         });
+        
+    
     },
 
     //Función de actualización de los sistemas de juego (movimientos, fisicas, etc)
     update: function () {
+        
         if(connection.readystate==connection.OPEN){
         if(jugadorActual==1){
             var mensaje = {
@@ -339,7 +342,7 @@ Game.Nivel.prototype = {
                     
                     for(var i=0;i<rompeArray.length;i++){
                         if(bloques.getChildAt(rompeArray[i]).alive){
-                            bloques.removeChildAt(rompeArray[i]);
+                            bloques.getChildAt(rompeArray[i]).kill();
                             console.log(bloques.children[i].z);
                             console.log(rompeArray[i]);
                             }
@@ -370,7 +373,7 @@ Game.Nivel.prototype = {
                         rompeArray=JSON.parse(mensaje.bloques);
                         for(var i=0;i<rompeArray.length;i++){
                             if(bloques.getChildAt(rompeArray[i]).alive){
-                                bloques.removeChildAt(rompeArray[i]);
+                                bloques.getChildAt(rompeArray[i]).kill();
                                 console.log(bloques.children[i].z);
                                 console.log(rompeArray[i]);
                                 }
