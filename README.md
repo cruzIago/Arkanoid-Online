@@ -93,4 +93,4 @@ Assets del juego
 ![diagramaFlujoWeb](https://i.imgur.com/dXm1Erz.png)
 
 # Diagrama UML Websockets
-![diagramaUML]https://i.imgur.com/Jel78Kg.jpg
+![diagramaUML](https://i.imgur.com/Jel78Kg.jpg)
