@@ -89,4 +89,5 @@ Assets del juego
 
 # Api Rest diagrama de clases
 ![diagramaRest](https://i.imgur.com/MNHDbLB.png)
-
+# Diagrama de flujo websockets
+![diagramaFlujoWeb](https://i.imgur.com/dXm1Erz.png)
