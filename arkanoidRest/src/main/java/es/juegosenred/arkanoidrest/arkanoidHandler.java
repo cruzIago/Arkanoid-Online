@@ -76,7 +76,7 @@ public class arkanoidHandler extends TextWebSocketHandler {
     private void envioCreacionSala(WebSocketSession sesion, JsonNode nodo) throws IOException {
         System.out.println("Sala Creada: " + nodo.toString());
         ObjectNode nuevo = mapeador.createObjectNode();
-        System.out.println("funciona");
+       
         nuevo.put("sala",nodo.get("sala").asText());
         for (WebSocketSession participes : sesiones.values()) {
             if (!participes.getId().equals(sesion.getId())) {
