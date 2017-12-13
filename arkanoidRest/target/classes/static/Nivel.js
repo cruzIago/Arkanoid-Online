@@ -334,7 +334,7 @@ Game.Nivel.prototype = {
                 if (mensaje.velocidadBolaY <= -250 && bInit) {
                     lanzarBola();
                 }
-                if(rompeArray.length>0){
+                //if(rompeArray.length>0){
                     rompeArray=JSON.parse(mensaje.bloques);
                     
                     for(var i=0;i<rompeArray.length;i++){
@@ -344,7 +344,7 @@ Game.Nivel.prototype = {
                             console.log(rompeArray[i]);
                             }
                     }
-                }
+                //}
                 if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
                     //downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
                 }
@@ -365,17 +365,17 @@ Game.Nivel.prototype = {
                     if (mensaje.velocidadBolaY <= -250 && bInit) {
                         lanzarBola();
                     }
-                    if(rompeArray.length>0){
+                   // if(rompeArray.length>0){
+                        
                         rompeArray=JSON.parse(mensaje.bloques);
                         for(var i=0;i<rompeArray.length;i++){
                             if(bloques.getChildAt(rompeArray[i]).alive){
-                            bloques.removeChildAt(rompeArray[i]);
-                            console.log(bloques.children[i].z);
-                            console.log(rompeArray[i]);
-                            }
+                                bloques.removeChildAt(rompeArray[i]);
+                                console.log(bloques.children[i].z);
+                                console.log(rompeArray[i]);
+                                }
                         }
-
-                        }
+                        //}
                         if (mensaje.powerUp >= 0 && mensaje.powerUp < 6) {
                             // downPU(mensaje.powerUP(mensaje.powerUp, mensaje.powerUpX, mensaje.powerUpY));
                     }
@@ -545,7 +545,7 @@ function bloqueRompe(bola, bloque) {
         derrota.destroy();
     }
 
-    console.log(bloques.children);
+   
 
 
 }
