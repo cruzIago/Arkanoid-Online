@@ -37,35 +37,42 @@ Github: cruzIago<br>
 
 # Flujo
 Comenzamos ejecutando el .jar, Arkanoid-Online Rest.jar para tener nuestro servidor REST encendido. Accedemos a Index.html para comenzar la partida. Cuando destruyamos todos los bloques o perdamos las bolas, habrá que introducir el nombre, que será como máximo de 3 letras, pudiendo moverse de izquierda a derecha para introducirlas. Pulsar Enter para acceder a la tabla de puntuaciones y saber si hemos sido capaces de superar algún record. Con siguiente volveremos al menu inicial.
+
+# Protocolo Websockets
+- El servidor recibira 2 tipos de mensajes: el mensaje de creación de salas y los mensajes que ocurriran en la partida
+- El mensaje de salas solo tendra información de la sala y el nombre (será la fecha actual del pc más una s al final)
+- El mensaje del nivel contendrá la posición de la pala, la bola, la velocidad de la misma, el array con los indices de
+    los bloques destruidos.
+    
 # Video
-[![video](https://img.youtube.com/vi/4oOUtWo8wXo/0.jpg)](https://www.youtube.com/watch?v=4oOUtWo8wXo)
+[![video](https://img.youtube.com/vi/RkWOEzIhicQ/0.jpg)](https://www.youtube.com/watch?v=RkWOEzIhicQ)
 
 Parte 2- Juego
 
 Assets del juego
 
-![1Jugador](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/1JUGADOR.png?raw=true)
+![1Jugador](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/1JUGADOR.png?raw=true)
 
-![2Jugadores](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/2JUGADORES.png?raw=true)
+![2Jugadores](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/2JUGADORES.png?raw=true)
 
-![Background](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BACKGROUND.png?raw=true)
+![Background](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/BACKGROUND.png?raw=true)
 
-![Bloques](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Bloques.png?raw=true)
+![Bloques](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Bloques.png?raw=true)
 
-![BolaAzul](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BolaAzul.png?raw=true)
+![BolaAzul](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/BolaAzul.png?raw=true)
 
-![BolaROja](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/BolaRoja.png?raw=true)
+![BolaROja](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/BolaRoja.png?raw=true)
 
-![MapaMulti](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Mapa%20multi.png?raw=true)
-![Pala0](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala0.png?raw=true)
-![Pala1](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala1.png?raw=true)
-![Pala2](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala2.png?raw=true)
-![Pala3](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala3.png?raw=true)
-![Pala4](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala4.png?raw=true)
-![Pala5](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/Pala5.png?raw=true)
-![background_img](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/background_ingame.png?raw=true)
-![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/powerups.png?raw=true)
-![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/assets/volver.png?raw=true)
+![MapaMulti](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Mapa%20multi.png?raw=true)
+![Pala0](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala0.png?raw=true)
+![Pala1](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala1.png?raw=true)
+![Pala2](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala2.png?raw=true)
+![Pala3](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala3.png?raw=true)
+![Pala4](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala4.png?raw=true)
+![Pala5](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/Pala5.png?raw=true)
+![background_img](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/background_ingame.png?raw=true)
+![Powerups](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/powerups.png?raw=true)
+![volver](https://github.com/cruzIago/Arkanoid-Online/blob/master/arkanoidRest/src/main/resources/static/assets/volver.png?raw=true)
 
 # Menú de inicio, se puede escoger entre dos opciones: Jugar solo (1 Jugador) o jugar con alguien (2 Jugadores).
 
@@ -86,11 +93,22 @@ Assets del juego
 # Pantalla de rankings
 ![leaderboard](https://i.imgur.com/Vztc2hd.png)
 
+# Pantalla de salas
+![salas](https://i.imgur.com/FnPSW0P.png)
+
+# Pantalla de salas creada
+![salas2](https://i.imgur.com/QPMRL0x.png)
+
+# Pantalla de espera por jugador
+![espera](https://i.imgur.com/LZU7HWl.png)
 
 # Api Rest diagrama de clases
 ![diagramaRest](https://i.imgur.com/MNHDbLB.png)
+
 # Diagrama de flujo websockets
+
 ![diagramaFlujoWeb](https://i.imgur.com/dXm1Erz.png)
 
 # Diagrama UML Websockets
+
 ![diagramaUML](https://i.imgur.com/Jel78Kg.jpg)
