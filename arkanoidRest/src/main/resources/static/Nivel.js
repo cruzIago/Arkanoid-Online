@@ -48,6 +48,7 @@ Game.Nivel.prototype = {
                 bloqueArray[i][j];
             }
         }
+        rompeArray=new Array();
         nJugadores = jugadores;
         jugadorActual = jugador;//1 si es el jugador 1 (barra superior), 2 si es el jugador 2 (barra inferior)
         bInit = true;
@@ -301,6 +302,18 @@ Game.Nivel.prototype = {
 
         }
 
+        if (puntuacion == 400) {   //Si no quedan bloques se para el juego y has ganado
+            vel = 0;
+            bola_1.body.velocity.x = 0;
+            bola_1.body.velocity.y = 0;
+            if (nJugadores) {
+                bola_2.body.velocity.x = 0;
+                bola_2.body.velocity.y = 0;
+            }
+            victoria.x = 250;
+            victoria.y = 400;
+            derrota.destroy();
+        }
 
         if (vel == 0) {
             this.time.events.add(Phaser.Timer.SECOND * 4, function over() {
@@ -309,6 +322,7 @@ Game.Nivel.prototype = {
                 connection.close();
             }, this);
         }
+
 
     },
     actualizarEstado: function (game) {
@@ -343,8 +357,7 @@ Game.Nivel.prototype = {
                     for(var i=0;i<rompeArray.length;i++){
                         if(bloques.getChildAt(rompeArray[i]).alive){
                             bloques.getChildAt(rompeArray[i]).kill();
-                            console.log(bloques.children[i].z);
-                            console.log(rompeArray[i]);
+                            puntuacion+=10;
                             }
                     }
                 //}
@@ -374,8 +387,7 @@ Game.Nivel.prototype = {
                         for(var i=0;i<rompeArray.length;i++){
                             if(bloques.getChildAt(rompeArray[i]).alive){
                                 bloques.getChildAt(rompeArray[i]).kill();
-                                console.log(bloques.children[i].z);
-                                console.log(rompeArray[i]);
+                                puntuacion+=10;
                                 }
                         }
                         //}
@@ -535,18 +547,7 @@ function bloqueRompe(bola, bloque) {
     goPU(bloque.x, bloque.y);
     puntuacion += 10;
     textoPuntuacion.text = 'puntos: ' + puntuacion;
-    if (puntuacion == 400) {   //Si no quedan bloques se para el juego y has ganado
-        vel = 0;
-        bola_1.body.velocity.x = 0;
-        bola_1.body.velocity.y = 0;
-        if (nJugadores) {
-            bola_2.body.velocity.x = 0;
-            bola_2.body.velocity.y = 0;
-        }
-        victoria.x = 250;
-        victoria.y = 400;
-        derrota.destroy();
-    }
+    
 
    
 
@@ -647,7 +648,23 @@ function contadorVel() {
 }
 
 function matarj1() {
-
+    if(jugadorActual==1){
+        var mensaje = {
+            who: jugadorActual,
+            velocidadPala: pala_1.body.velocity.x,
+            posicionPala: pala_1.x,
+            velocidadBolaX: bola_1.body.velocity.x,
+            velocidadBolaY: bola_1.body.velocity.y,
+            posicionBolaX: bola_1.x,
+            posicionBolaY: bola_1.y,
+            bloques: JSON.stringify(rompeArray),
+            powerUp: -1,
+            powerUpX: 0,
+            powerUpY: 0
+        }
+        connection.send(JSON.stringify(mensaje));
+    }
+    
     pala_1.kill();
     bolasperdidas += 1;
     if (nJugadores && bolasperdidas == 2) {  //Cuando se han perdido las 2 bolas se acaba la partida
@@ -659,7 +676,25 @@ function matarj1() {
 }
 
 
-function matarj2() {
+function matarj2() {if(nJugadores ){
+    if(jugadorActual==2){
+    var mensaje = {
+        who: jugadorActual,
+        velocidadPala: pala_1.body.velocity.x,
+        posicionPala: pala_1.x,
+        velocidadBolaX: bola_1.body.velocity.x,
+        velocidadBolaY: bola_1.body.velocity.y,
+        posicionBolaX: bola_1.x,
+        posicionBolaY: bola_1.y,
+        bloques: JSON.stringify(rompeArray),
+        powerUp: -1,
+        powerUpX: 0,
+        powerUpY: 0
+    }
+    connection.send(JSON.stringify(mensaje));
+}
+}
+
     pala_2.kill();
     if (nJugadores) {
         pala_2.kill();
